@@ -58,17 +58,26 @@ autocmd BufWritePre * :silent! %s/\s\+$//e
 ""
 call plug#begin()
 
+    " fancy nav
     Plug 'nvim-lua/popup.nvim'
     Plug 'nvim-lua/plenary.nvim'
     Plug 'nvim-telescope/telescope.nvim'
     Plug 'nvim-telescope/telescope-fzy-native.nvim'
 
-    Plug 'neoclide/coc.nvim', {'branch': 'release'}
-    Plug 'tpope/vim-fugitive'
-
+    " another way to nav
     Plug 'preservim/nerdtree'
 
+    " LSP
+    Plug 'neoclide/coc.nvim', {'branch': 'release'}
+    Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
+
+    " VSC
+    Plug 'tpope/vim-fugitive'
+
+    " COLORS
     Plug 'gruvbox-community/gruvbox'
+    Plug 'ryanoasis/vim-devicons'
+
     Plug 'itchyny/lightline.vim'
 
 call plug#end()
