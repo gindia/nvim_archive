@@ -15,8 +15,9 @@ set splitbelow
 set splitright
 set autowriteall
 set noshowmode
-set nu
-set signcolumn=number
+"set nu
+"set signcolumn=number
+set signcolumn=yes:1
 set nohlsearch
 set incsearch
 set scrolloff=10
@@ -37,6 +38,8 @@ set colorcolumn=100
 set nowritebackup
 set updatetime=100
 
+set guifont="SauceCodePro NF"
+
 highlight colorcolumn ctermbg=darkgray
 let g:python3_host_prog='C:\Program Files\Python39\python.exe'
 
@@ -46,12 +49,18 @@ let g:loaded_perl_provider = 0
 
 set shortmess+=c
 
+" remove trailing white space on save
+autocmd BufWritePre * :silent! %s/\s\+$//e
+
+" ex mode disable.
+map <S-Q> <nop>
+
+" keymaps
 let mapleader=" "
 
 map <leader>w <C-w>
+map <silent> <leader>qa :wqa<CR>
 
-" remove trailing white space on save
-autocmd BufWritePre * :silent! %s/\s\+$//e
 
 ""
 " Plugins Installs
@@ -66,10 +75,13 @@ call plug#begin()
 
     " another way to nav
     Plug 'preservim/nerdtree'
+    Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
 
     " LSP
     Plug 'neoclide/coc.nvim', {'branch': 'release'}
-    Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
+
+    " lsp based highlight
+    Plug 'jackguo380/vim-lsp-cxx-highlight'
 
     " VSC
     Plug 'tpope/vim-fugitive'
@@ -80,10 +92,17 @@ call plug#begin()
 
     Plug 'itchyny/lightline.vim'
 
+    "floating termguicolors
+    Plug 'voldikss/vim-floaterm'
+
 call plug#end()
 ""
 " Plugins Settings
 ""
+
+"" floaterm
+nnoremap   <silent>   <leader>'   :FloatermToggle<CR>
+tnoremap   <silent>   <leader>'   <C-\><C-n>:FloatermToggle<CR>
 
 "" nerdtree
 nnoremap <leader>n :NERDTreeFocus<CR>
@@ -101,6 +120,8 @@ autocmd BufEnter * if bufname('#') =~ 'NERD_tree_\d\+' && bufname('%') !~ 'NERD_
 
 "" gruvbox
 set background=dark
+let g:gruvbox_contrast_dark='hard'
+"let g:gruvbox_number_column='faded_blue'
 colorscheme gruvbox
 
 "" light-line
