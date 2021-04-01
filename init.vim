@@ -8,6 +8,9 @@
 ""
 " Non Plugins settigns.
 ""
+
+"set shell=\"cmd.exe\"\ -f:on\ /k\ \"C:\commands\profile.bat\"
+
 set exrc
 set secure
 set termguicolors
@@ -59,8 +62,6 @@ map <S-Q> <nop>
 let mapleader=" "
 
 map <leader>w <C-w>
-map <silent> <leader>qa :wqa<CR>
-
 
 ""
 " Plugins Installs
@@ -101,8 +102,8 @@ call plug#end()
 ""
 
 "" floaterm
-nnoremap   <silent>   <leader>'   :FloatermToggle<CR>
-tnoremap   <silent>   <leader>'   <C-\><C-n>:FloatermToggle<CR>
+nnoremap <silent> <leader>' :FloatermToggle<CR>
+tnoremap <silent> <leader>' <C-\><C-n>:FloatermToggle<CR>
 
 "" nerdtree
 nnoremap <leader>n :NERDTreeFocus<CR>
