@@ -8,10 +8,15 @@
 " GUI settings 'neovide'
 ""
 set mouse=a
-set guifont="SauceCodePro NF"
+if has('win32')
+    set guifont="SauceCodePro NF"
+else
+    " default to Linux
+    set guifont="SauceCodePro NF"
+endif
 
 ""
-" Non Plugins settigns.
+" Non Plugins settings.
 ""
 
 "set shell=\"cmd.exe\"\ -f:on\ /k\ \"C:\commands\profile.bat\"
@@ -48,7 +53,11 @@ set updatetime=100
 
 
 highlight colorcolumn ctermbg=darkgray
-let g:python3_host_prog='C:\Program Files\Python39\python.exe'
+if has('win32')
+    let g:python3_host_prog='C:\Program Files\Python39\python.exe'
+else
+    " default to Linux
+endif
 
 let g:loaded_python_provider = 0
 let g:loaded_ruby_provider = 0
