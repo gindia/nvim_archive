@@ -4,6 +4,11 @@
 "  	      v 0.5
 " --------------------------------
 " --------------------------------
+""
+" GUI settings 'neovide'
+""
+set mouse=a
+set guifont="SauceCodePro NF"
 
 ""
 " Non Plugins settigns.
@@ -41,7 +46,6 @@ set colorcolumn=100
 set nowritebackup
 set updatetime=100
 
-set guifont="SauceCodePro NF"
 
 highlight colorcolumn ctermbg=darkgray
 let g:python3_host_prog='C:\Program Files\Python39\python.exe'
@@ -63,6 +67,14 @@ let mapleader=" "
 
 map <leader>w <C-w>
 
+nnoremap <silent> <C-n> :Explore<CR>
+
+" use c not cpp
+augroup project
+  autocmd!
+  autocmd BufRead,BufNewFile *.h,*.c set filetype=c
+augroup END
+
 ""
 " Plugins Installs
 ""
@@ -73,10 +85,6 @@ call plug#begin()
     Plug 'nvim-lua/plenary.nvim'
     Plug 'nvim-telescope/telescope.nvim'
     Plug 'nvim-telescope/telescope-fzy-native.nvim'
-
-    " another way to nav
-    Plug 'preservim/nerdtree'
-    Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
 
     " LSP
     Plug 'neoclide/coc.nvim', {'branch': 'release'}
@@ -101,23 +109,13 @@ call plug#end()
 " Plugins Settings
 ""
 
+"" vim-lsp-cxx-highlight
+let g:lsp_cxx_hl_use_text_props = 1
+
+
 "" floaterm
 nnoremap <silent> <leader>' :FloatermToggle<CR>
 tnoremap <silent> <leader>' <C-\><C-n>:FloatermToggle<CR>
-
-"" nerdtree
-nnoremap <silent> <leader>n :NERDTreeFocus<CR>
-
-nnoremap <silent> <C-n> :NERDTreeToggle<CR>
-nnoremap <silent> <C-f> :NERDTreeFind<CR>
-
-" Exit Vim if NERDTree is the only window left.
-autocmd BufEnter * if tabpagenr('$') == 1 && winnr('$') == 1 && exists('b:NERDTree') && b:NERDTree.isTabTree() |
-    \ quit | endif
-
-" If another buffer tries to replace NERDTree, put it in the other window, and bring back NERDTree.
-autocmd BufEnter * if bufname('#') =~ 'NERD_tree_\d\+' && bufname('%') !~ 'NERD_tree_\d\+' && winnr('$') > 1 |
-    \ let buf=bufnr() | buffer# | execute "normal! \<C-W>w" | execute 'buffer'.buf | endif
 
 "" gruvbox
 set background=dark
