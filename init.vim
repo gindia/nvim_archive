@@ -44,7 +44,7 @@ set autoindent
 set smartindent
 set shiftround
 set noerrorbells
-set hidden
+"set hidden
 set noswapfile
 set nobackup
 set colorcolumn=100
@@ -78,6 +78,11 @@ map <leader>w <C-w>
 
 nnoremap <silent> <C-n> :Explore<CR>
 
+nnoremap <silent> <leader>n :bn<CR>
+nnoremap <silent> <leader>p :bp<CR>
+
+nnoremap <silent> <leader>bd :%bd<CR>
+
 " use c not cpp
 augroup project
   autocmd!
@@ -101,7 +106,10 @@ call plug#begin()
     " lsp based highlight
     Plug 'jackguo380/vim-lsp-cxx-highlight'
 
-    " VSC
+    " docs generator
+    Plug 'kkoomen/vim-doge', { 'do': { -> doge#install() } }
+
+    " Git source controll
     Plug 'tpope/vim-fugitive'
 
     " COLORS
