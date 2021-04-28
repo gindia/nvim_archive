@@ -51,7 +51,6 @@ set colorcolumn=100
 set nowritebackup
 set updatetime=100
 
-
 highlight colorcolumn ctermbg=darkgray
 if has('win32')
     let g:python3_host_prog='C:\Program Files\Python39\python.exe'
@@ -84,10 +83,7 @@ nnoremap <silent> <leader>p :bp<CR>
 nnoremap <silent> <leader>bd :%bd<CR>
 
 " use c not cpp
-augroup project
-  autocmd!
-  autocmd BufRead,BufNewFile *.h,*.c set filetype=c
-augroup END
+let c_syntax_for_h = 1
 
 ""
 " Plugins Installs
@@ -102,6 +98,9 @@ call plug#begin()
 
     " LSP
     Plug 'neoclide/coc.nvim', {'branch': 'release'}
+
+    " normal syntax highlight
+    Plug 'sheerun/vim-polyglot'
 
     " lsp based highlight
     Plug 'jackguo380/vim-lsp-cxx-highlight'
@@ -122,6 +121,8 @@ call plug#begin()
     Plug 'voldikss/vim-floaterm'
 
 call plug#end()
+
+
 ""
 " Plugins Settings
 ""
