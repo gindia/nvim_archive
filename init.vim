@@ -86,6 +86,14 @@ nnoremap <silent> <leader>bd :%bd<CR>
 let c_syntax_for_h = 1
 
 ""
+" Pre Plugins settings
+""
+
+"" polyglot
+let g:polyglot_disabled = ['java', 'groovy', 'kotlin']
+
+
+""
 " Plugins Installs
 ""
 call plug#begin()
