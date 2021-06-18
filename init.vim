@@ -110,6 +110,9 @@ call plug#begin()
     " normal syntax highlight
     Plug 'sheerun/vim-polyglot'
 
+    " java syntax
+    Plug 'uiiaoo/java-syntax.vim'
+
     " lsp based highlight
     Plug 'jackguo380/vim-lsp-cxx-highlight'
 
