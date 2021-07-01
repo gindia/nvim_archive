@@ -50,6 +50,8 @@ set nobackup
 set colorcolumn=100
 set nowritebackup
 set updatetime=100
+set nospell
+set cursorline
 
 highlight colorcolumn ctermbg=darkgray
 if has('win32')
@@ -83,7 +85,7 @@ nnoremap <silent> <leader>p :bp<CR>
 nnoremap <silent> <leader>bd :%bd<CR>
 
 " use c not cpp
-let c_syntax_for_h = 1
+" let c_syntax_for_h = 1
 
 ""
 " Pre Plugins settings
