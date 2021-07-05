@@ -109,11 +109,14 @@ call plug#begin()
     " LSP
     Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
+    " RipGrep
+    Plug 'jremmen/vim-ripgrep'
+
     " normal syntax highlight
     Plug 'sheerun/vim-polyglot'
 
     " java syntax
-    Plug 'uiiaoo/java-syntax.vim'
+    " Plug 'uiiaoo/java-syntax.vim'
 
     " lsp based highlight
     Plug 'jackguo380/vim-lsp-cxx-highlight'
