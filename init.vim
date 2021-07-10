@@ -111,6 +111,8 @@ call plug#begin()
   Plug 'neovim/nvim-lspconfig'
   Plug 'hrsh7th/nvim-compe'
 
+  Plug 'folke/lsp-colors.nvim'
+
   " RipGrep
   Plug 'jremmen/vim-ripgrep'
 
@@ -119,9 +121,6 @@ call plug#begin()
 
   " java syntax
   Plug 'uiiaoo/java-syntax.vim'
-
-  " lsp based highlight
-  Plug 'jackguo380/vim-lsp-cxx-highlight'
 
   " docs generator
   Plug 'kkoomen/vim-doge', { 'do': { -> doge#install() } }
@@ -146,11 +145,6 @@ call plug#end()
 " Plugins Settings
 ""
 
-"" vim-lsp-cxx-highlight
-let g:lsp_cxx_hl_use_text_props = 1
-let g:lsp_cxx_hl_light_bg = 1
-let g:lsp_cxx_hl_use_nvim_text_props = 1
-
 
 "" floaterm
 nnoremap <silent> <leader>' :FloatermToggle<CR>
@@ -162,6 +156,7 @@ lua << EOF
 require("github-theme").setup({
   themeStyle = "dark",
   -- ... your github-theme config
+  hideInactiveStatusline = true,
 })
 EOF
 
@@ -253,6 +248,11 @@ for _, lsp in ipairs(servers) do
 end
 
 EOF
+
+""""
+"" LSP_COLORS
+"""""
+lua require("lsp-colors").setup({})
 
 """""
 "" Auto complete
