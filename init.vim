@@ -12,7 +12,7 @@ if has('win32')
     set guifont="SauceCodePro NF"
 else
     " default to Linux
-    set guifont="SauceCodePro NF"
+    set guifont="SourceCodePro"
 endif
 
 ""
@@ -37,21 +37,25 @@ set scrolloff=10
 set sidescrolloff=10
 set scrollback=100000
 set nowrap
+
+"" tabs
 set expandtab
 set smarttab
-set tabstop=4 sw=4
+set tabstop=2 shiftwidth=2
+set softtabstop=2
+
 set autoindent
 set smartindent
 set shiftround
-set noerrorbells
+
 "set hidden
 set noswapfile
 set nobackup
 set colorcolumn=100
 set nowritebackup
 set updatetime=100
-set nospell
 set cursorline
+set noerrorbells
 
 highlight colorcolumn ctermbg=darkgray
 if has('win32')
@@ -116,7 +120,7 @@ call plug#begin()
     Plug 'sheerun/vim-polyglot'
 
     " java syntax
-    " Plug 'uiiaoo/java-syntax.vim'
+    Plug 'uiiaoo/java-syntax.vim'
 
     " lsp based highlight
     Plug 'jackguo380/vim-lsp-cxx-highlight'
@@ -145,6 +149,9 @@ call plug#end()
 
 "" vim-lsp-cxx-highlight
 let g:lsp_cxx_hl_use_text_props = 1
+let g:lsp_cxx_hl_light_bg = 1
+let g:lsp_cxx_hl_use_nvim_text_props = 1
+
 
 
 "" floaterm
@@ -236,3 +243,5 @@ endfunction
 nnoremap <space>ff <cmd>lua require'telescope.builtin'.find_files(require('telescope.themes').get_dropdown({ winblend = 10 }))<cr>
 nnoremap <space>fg <cmd>lua require('telescope.builtin').live_grep()<cr>
 lua require('telescope_config')
+
+set nospell
