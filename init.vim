@@ -93,7 +93,7 @@ let c_syntax_for_h = 1
 
 "" polyglot
 let g:polyglot_disabled = ['java', 'groovy', 'kotlin']
-
+autocmd! BufNewFile,BufRead *.vert,*.frag,*.vs,*.fs set ft=glsl
 
 ""
 " Plugins Installs
@@ -111,7 +111,6 @@ call plug#begin()
 
   " LSP
   Plug 'neoclide/coc.nvim', {'branch': 'release'}
-  Plug 'jackguo380/vim-lsp-cxx-highlight'
   "Plug 'neovim/nvim-lspconfig'
   "Plug 'hrsh7th/nvim-compe'
 
@@ -119,6 +118,8 @@ call plug#begin()
   Plug 'jremmen/vim-ripgrep'
 
   " normal syntax highlight
+  Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}  " We recommend updating the parsers on update
+  "Plug 'jackguo380/vim-lsp-cxx-highlight'
   Plug 'sheerun/vim-polyglot'
 
   " java syntax
@@ -146,7 +147,7 @@ call plug#end()
 ""
 " Plugins Settings
 ""
-let g:lsp_cxx_hl_use_text_props = 1
+"let g:lsp_cxx_hl_use_text_props = 1
 
 
 "" floaterm
@@ -192,6 +193,25 @@ EOF
 
 " Use autocmd to force lightline update.
 "autocmd User CocStatusChange,CocDiagnosticChange call lightline#update()
+"
+""""
+"" treesitter
+""""
+lua <<EOF
+require'nvim-treesitter.configs'.setup {
+  -- ensure_installed = "maintained", -- one of "all", "maintained" (parsers with maintainers), or a list of languages
+  -- ignore_install = { "javascript" }, -- List of parsers to ignore installing
+  highlight = {
+    enable = true,              -- false will disable the whole extension
+    -- disable = { "c", "rust" },  -- list of language that will be disabled
+    -- Setting this to true will run `:h syntax` and tree-sitter at the same time.
+    -- Set this to `true` if you depend on 'syntax' being enabled (like for indentation).
+    -- Using this option may slow down your editor, and you may see some duplicate highlights.
+    -- Instead of true it can also be a list of languages
+    additional_vim_regex_highlighting = true,
+  },
+}
+EOF
 
 """"
 "" coc-settings
