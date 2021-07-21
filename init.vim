@@ -53,6 +53,8 @@ set updatetime=100
 set cursorline
 set noerrorbells
 
+set nospell
+
 highlight colorcolumn ctermbg=darkgray
 if has('win32')
     let g:python3_host_prog='C:\Program Files\Python39\python.exe'
@@ -79,21 +81,8 @@ map <leader>w <C-w>
 
 nnoremap <silent> <C-n> :Explore<CR>
 
-nnoremap <silent> <leader>n :bn<CR>
-nnoremap <silent> <leader>p :bp<CR>
-
-nnoremap <silent> <leader>bd :%bd<CR>
-
 " use c not cpp
 let c_syntax_for_h = 1
-
-""
-" Pre Plugins settings
-""
-
-"" polyglot
-let g:polyglot_disabled = ['java', 'groovy', 'kotlin']
-autocmd! BufNewFile,BufRead *.vert,*.frag,*.vs,*.fs set ft=glsl
 
 ""
 " Plugins Installs
@@ -111,28 +100,17 @@ call plug#begin()
 
   " LSP
   Plug 'neoclide/coc.nvim', {'branch': 'release'}
-  "Plug 'neovim/nvim-lspconfig'
-  "Plug 'hrsh7th/nvim-compe'
 
   " RipGrep
   Plug 'jremmen/vim-ripgrep'
 
-  " normal syntax highlight
+  " syntax highlight
   Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}  " We recommend updating the parsers on update
-  "Plug 'jackguo380/vim-lsp-cxx-highlight'
-  Plug 'sheerun/vim-polyglot'
-
-  " java syntax
-  Plug 'uiiaoo/java-syntax.vim'
-
-  " docs generator
-  Plug 'kkoomen/vim-doge', { 'do': { -> doge#install() } }
 
   " Git source controll
   Plug 'tpope/vim-fugitive'
 
   " COLORS
-  Plug 'projekt0n/github-nvim-theme'
   Plug 'gruvbox-community/gruvbox'
   Plug 'ryanoasis/vim-devicons'
 
@@ -143,12 +121,9 @@ call plug#begin()
 
 call plug#end()
 
-
 ""
 " Plugins Settings
 ""
-"let g:lsp_cxx_hl_use_text_props = 1
-
 
 "" floaterm
 nnoremap <silent> <leader>' :FloatermToggle<CR>
@@ -172,8 +147,8 @@ require'lualine'.setup {
   },
   sections = {
     lualine_a = {'mode'},
-    lualine_b = {'branch'},
-    lualine_c = {'filename'},
+    lualine_b = {'branch', 'diff'},
+    lualine_c = {'filename', {'g:coc_status', 'bo:filetype'}},
     lualine_x = {'encoding', 'fileformat', 'filetype'},
     lualine_y = {'progress'},
     lualine_z = {'location'}
@@ -262,5 +237,3 @@ endfunction
 nnoremap <space>ff <cmd>lua require'telescope.builtin'.find_files(require('telescope.themes').get_dropdown({ winblend = 10 }))<cr>
 nnoremap <space>fg <cmd>lua require('telescope.builtin').live_grep()<cr>
 lua require('telescope_config')
-
-set nospell
