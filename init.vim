@@ -105,6 +105,7 @@ call plug#begin()
   Plug 'jremmen/vim-ripgrep'
 
   " syntax highlight
+  Plug 'sheerun/vim-polyglot'
   Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}  " We recommend updating the parsers on update
 
   " Git source controll
@@ -234,6 +235,8 @@ endfunction
 """
 " telescope
 """
-nnoremap <space>ff <cmd>lua require'telescope.builtin'.find_files(require('telescope.themes').get_dropdown({ winblend = 10 }))<cr>
+
+"nnoremap <space>ff <cmd>lua require'telescope.builtin'.find_files(require('telescope.themes').get_dropdown({ winblend = 10 }))<cr>
+nnoremap <space>ff <cmd>lua require'telescope.builtin'.find_files()<cr>
 nnoremap <space>fg <cmd>lua require('telescope.builtin').live_grep()<cr>
 lua require('telescope_config')
