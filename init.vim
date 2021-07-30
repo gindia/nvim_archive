@@ -81,7 +81,7 @@ map <leader>w <C-w>
 
 nnoremap <silent> <C-n> :Explore<CR>
 
-" use c not cpp
+" use c not cpp for .h files
 let c_syntax_for_h = 1
 
 ""
