@@ -19,6 +19,29 @@ endif
 " Non Plugins settings.
 ""
 
+let mapleader=" "
+
+" window
+map <leader>w <C-w>
+
+nnoremap <silent> <C-n> :Explore<CR>
+" copy from cursor to the end of line
+nnoremap Y y$
+
+" better undo
+nnoremap , ,<c-g>u
+nnoremap . .<c-g>u
+nnoremap ! !<c-g>u
+nnoremap ? ?<c-g>u
+
+" move text
+vnoremap J :m '>+1<CR>gv=gv
+vnoremap K :m '<-2<CR>gv=gv
+" inoremap <C-j> <esc>:m .+1<CR>==
+" inoremap <C-k> <esc>:m .-2<CR>==
+nnoremap <leader>j :m .+1<CR>==
+nnoremap <leader>k :m .-2<CR>==
+
 set exrc
 set secure
 set termguicolors
@@ -75,14 +98,13 @@ autocmd BufWritePre * :silent! %s/\s\+$//e
 map <S-Q> <nop>
 
 " keymaps
-let mapleader=" "
 
-map <leader>w <C-w>
-
-nnoremap <silent> <C-n> :Explore<CR>
 
 " use c not cpp for .h files
 let c_syntax_for_h = 1
+
+" termdebug
+let g:termdebug_wide=1
 
 ""
 " Plugins Installs
