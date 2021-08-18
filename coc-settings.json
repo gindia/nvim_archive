@@ -1,0 +1,21 @@
+{
+  "languageserver": {
+    "haskell": {
+      "command": "haskell-language-server-wrapper",
+      "args": ["--lsp"],
+      "rootPatterns": ["*.cabal", "stack.yaml", "cabal.project", "package.yaml", "hie.yaml"],
+      "filetypes": ["haskell", "lhaskell"]
+    }
+    , "zls" : {
+        "command": "zls",
+        "filetypes": ["zig"]
+    }
+ }
+  , "clangd.semanticHighlighting"     : true
+  , "clangd.disableSnippetCompletion" : true
+  , "clangd.arguments": [
+    "-header-insertion=never"
+    ]
+  , "coc.preferences.extensionUpdateCheck": "daily"
+  , "git.enableGutters": false
+}

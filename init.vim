@@ -29,10 +29,10 @@ nnoremap <silent> <C-n> :Explore<CR>
 nnoremap Y y$
 
 " better undo
-nnoremap , ,<c-g>u
-nnoremap . .<c-g>u
-nnoremap ! !<c-g>u
-nnoremap ? ?<c-g>u
+inoremap , ,<c-g>u
+inoremap . .<c-g>u
+inoremap ! !<c-g>u
+inoremap ? ?<c-g>u
 
 " move text
 vnoremap J :m '>+1<CR>gv=gv
@@ -41,6 +41,8 @@ vnoremap K :m '<-2<CR>gv=gv
 " inoremap <C-k> <esc>:m .-2<CR>==
 nnoremap <leader>j :m .+1<CR>==
 nnoremap <leader>k :m .-2<CR>==
+
+
 
 set exrc
 set secure
@@ -67,7 +69,7 @@ set autoindent
 set smartindent
 set shiftround
 
-"set hidden
+set hidden
 set noswapfile
 set nobackup
 set colorcolumn=100
@@ -110,7 +112,6 @@ let g:termdebug_wide=1
 " Plugins Installs
 ""
 call plug#begin()
-
   " Kitty term
   Plug 'fladson/vim-kitty'
 
@@ -122,6 +123,7 @@ call plug#begin()
 
   " LSP
   Plug 'neoclide/coc.nvim', {'branch': 'release'}
+  Plug 'fannheyward/telescope-coc.nvim'
 
   " RipGrep
   Plug 'jremmen/vim-ripgrep'
@@ -151,6 +153,9 @@ call plug#end()
 "" floaterm
 nnoremap <silent> <leader>' :FloatermToggle<CR>
 tnoremap <silent> <leader>' <C-\><C-n>:FloatermToggle<CR>
+
+" make
+map <F12> <C-w>l:FloatermNew make<CR>
 
 
 "" theme
@@ -214,6 +219,8 @@ EOF
 """"
 "" coc-settings
 """"
+lua require('telescope').load_extension('coc')
+
 inoremap <silent><expr> <TAB>
       \ pumvisible() ? "\<C-n>" :
       \ <SID>check_back_space() ? "\<TAB>" :
@@ -234,16 +241,21 @@ inoremap <silent><expr> <cr> pumvisible() ? coc#_select_confirm()
                               \: "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
 
 " Use `:CocDiagnostics` to get all diagnostics of current buffer in location list.
+nmap <silent> <leader> ee :Telescope coc diagnostics<CR>
 nmap <silent> [e <Plug>(coc-diagnostic-prev)
 nmap <silent> ]e <Plug>(coc-diagnostic-next)
 
 " GoTo code navigation.
-nmap <silent> gd <Plug>(coc-definition)
-nmap <silent> gy <Plug>(coc-type-definition)
-nmap <silent> gi <Plug>(coc-implementation)
-nmap <silent> gr <Plug>(coc-references)
-nmap <space>r <Plug>(coc-rename)
-nmap <space>qf  <Plug>(coc-codeaction)
+"nmap <silent> gd <Plug>(coc-definition)
+nmap <silent> gd :Telescope coc definitions<CR>
+"nmap <silent> gy <Plug>(coc-type-definition)
+nmap <silent> gy :Telescope coc type_definitions<CR>
+"nmap <silent> gi <Plug>(coc-implementation)
+nmap <silent> gi :Telescope coc implementations<CR>
+"nmap <silent> gr <Plug>(coc-references)
+nmap <silent> gr :Telescope coc references<CR>
+nmap <leader>r <Plug>(coc-rename)
+nmap <leader>qf  <Plug>(coc-codeaction)
 
 nnoremap <silent> K :call <SID>show_documentation()<CR>
 function! s:show_documentation()
@@ -258,7 +270,7 @@ endfunction
 " telescope
 """
 
-"nnoremap <space>ff <cmd>lua require'telescope.builtin'.find_files(require('telescope.themes').get_dropdown({ winblend = 10 }))<cr>
-nnoremap <space>ff <cmd>lua require'telescope.builtin'.find_files()<cr>
-nnoremap <space>fg <cmd>lua require('telescope.builtin').live_grep()<cr>
+"nnoremap <leader>ff <cmd>lua require'telescope.builtin'.find_files(require('telescope.themes').get_dropdown({ winblend = 10 }))<cr>
+nnoremap <leader>ff <cmd>lua require'telescope.builtin'.find_files()<cr>
+nnoremap <leader>fg <cmd>lua require('telescope.builtin').live_grep()<cr>
 lua require('telescope_config')
