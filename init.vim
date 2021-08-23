@@ -2,23 +2,12 @@
 " --------------------------------
 "  	  NeoVim Settings
 "  	      v 0.5
+"  	    for windows
 " --------------------------------
 " --------------------------------
-""
-" GUI settings 'neovide'
-""
-set mouse=a
-if has('win32')
-    set guifont="SauceCodePro NF"
-else
-    " default to Linux
-    set guifont="SourceCodePro"
-endif
-
 ""
 " Non Plugins settings.
 ""
-
 let mapleader=" "
 
 " window
@@ -29,10 +18,10 @@ nnoremap <silent> <C-n> :Explore<CR>
 nnoremap Y y$
 
 " better undo
-nnoremap , ,<c-g>u
-nnoremap . .<c-g>u
-nnoremap ! !<c-g>u
-nnoremap ? ?<c-g>u
+inoremap , ,<c-g>u
+inoremap . .<c-g>u
+inoremap ! !<c-g>u
+inoremap ? ?<c-g>u
 
 " move text
 vnoremap J :m '>+1<CR>gv=gv
@@ -67,7 +56,7 @@ set autoindent
 set smartindent
 set shiftround
 
-"set hidden
+set hidden
 set noswapfile
 set nobackup
 set colorcolumn=100
@@ -79,11 +68,7 @@ set noerrorbells
 set nospell
 
 highlight colorcolumn ctermbg=darkgray
-if has('win32')
-    let g:python3_host_prog='C:\Program Files\Python39\python.exe'
-else
-    " default to Linux
-endif
+let g:python3_host_prog='C:\Users\og\scoop\shims\python3.EXE'
 
 let g:loaded_python_provider = 0
 let g:loaded_ruby_provider = 0
@@ -99,7 +84,6 @@ map <S-Q> <nop>
 
 " keymaps
 
-
 " use c not cpp for .h files
 let c_syntax_for_h = 1
 
@@ -110,10 +94,6 @@ let g:termdebug_wide=1
 " Plugins Installs
 ""
 call plug#begin()
-
-  " Kitty term
-  Plug 'fladson/vim-kitty'
-
   " fancy nav
   Plug 'nvim-lua/popup.nvim'
   Plug 'nvim-lua/plenary.nvim'
@@ -122,6 +102,7 @@ call plug#begin()
 
   " LSP
   Plug 'neoclide/coc.nvim', {'branch': 'release'}
+  Plug 'fannheyward/telescope-coc.nvim'
 
   " RipGrep
   Plug 'jremmen/vim-ripgrep'
@@ -152,6 +133,10 @@ call plug#end()
 nnoremap <silent> <leader>' :FloatermToggle<CR>
 tnoremap <silent> <leader>' <C-\><C-n>:FloatermToggle<CR>
 
+map <F12> :FloatermNew make<CR>
+map <F11> :FloatermNew make run<CR>
+
+map <F2> :call CocAction('format')<CR>
 
 "" theme
 set background=dark
@@ -164,8 +149,8 @@ require'lualine'.setup {
   options = {
     icons_enabled = true,
     theme = 'gruvbox',
-    component_separators = {'', ''},
-    section_separators = {'', ''},
+    section_separators = {'', ''},
+    component_separators = {'', ''},
     disabled_filetypes = {}
   },
   sections = {
@@ -189,9 +174,6 @@ require'lualine'.setup {
 }
 EOF
 
-" Use autocmd to force lightline update.
-"autocmd User CocStatusChange,CocDiagnosticChange call lightline#update()
-"
 """"
 "" treesitter
 """"
@@ -214,6 +196,8 @@ EOF
 """"
 "" coc-settings
 """"
+lua require('telescope').load_extension('coc')
+
 inoremap <silent><expr> <TAB>
       \ pumvisible() ? "\<C-n>" :
       \ <SID>check_back_space() ? "\<TAB>" :
@@ -234,16 +218,21 @@ inoremap <silent><expr> <cr> pumvisible() ? coc#_select_confirm()
                               \: "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
 
 " Use `:CocDiagnostics` to get all diagnostics of current buffer in location list.
+nmap <silent> <space>ee :Telescope coc diagnostics<CR>
 nmap <silent> [e <Plug>(coc-diagnostic-prev)
 nmap <silent> ]e <Plug>(coc-diagnostic-next)
 
 " GoTo code navigation.
-nmap <silent> gd <Plug>(coc-definition)
+"nmap <silent> gd <Plug>(coc-definition)
+nmap <silent> gd :Telescope coc definitions<CR>
 nmap <silent> gy <Plug>(coc-type-definition)
-nmap <silent> gi <Plug>(coc-implementation)
-nmap <silent> gr <Plug>(coc-references)
+"nmap <silent> gi <Plug>(coc-implementation)
+nmap <silent> gi :Telescope coc implementations<CR>
+"nmap <silent> gr <Plug>(coc-references)
+nmap <silent> gr :Telescope coc references<CR>
 nmap <space>r <Plug>(coc-rename)
-nmap <space>qf  <Plug>(coc-codeaction)
+"nmap <space>qf  <Plug>(coc-codeaction)
+nmap <silent> <leader>qf :Telescope coc code_actions<CR>
 
 nnoremap <silent> K :call <SID>show_documentation()<CR>
 function! s:show_documentation()
