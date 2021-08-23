@@ -1,7 +1,7 @@
 " --------------------------------
 " --------------------------------
-"  	  NeoVim Settings
 "  	      v 0.5
+"  	  NeoVim Settings
 "  	    for windows
 " --------------------------------
 " --------------------------------
@@ -99,7 +99,8 @@ call plug#begin()
   Plug 'nvim-lua/popup.nvim'
   Plug 'nvim-lua/plenary.nvim'
   Plug 'nvim-telescope/telescope.nvim'
-  Plug 'nvim-telescope/telescope-fzy-native.nvim'
+  Plug 'nvim-telescope/telescope-fzf-native.nvim', { 'do': 'make' }
+
 
   " LSP
   Plug 'neoclide/coc.nvim', {'branch': 'release'}
