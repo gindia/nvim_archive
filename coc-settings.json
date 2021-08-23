@@ -1,0 +1,9 @@
+{
+  "clangd.disableCompletion"        : true
+, "clangd.semanticHighlighting"     : true
+, "clangd.disableSnippetCompletion" : true
+, "clangd.arguments"                : [ "-header-insertion=never" ]
+
+, "git.enableGutters"               : false
+, "git.conflict.enabled"            : false
+}
