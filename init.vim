@@ -49,7 +49,7 @@ set nowrap
 "" tabs
 set expandtab
 set smarttab
-set tabstop=2 shiftwidth=2
+set tabstop=2 shiftwidth=2 "sw:2
 set softtabstop=2
 
 set autoindent
@@ -70,6 +70,7 @@ set nospell
 highlight colorcolumn ctermbg=darkgray
 let g:python3_host_prog='C:\Users\og\scoop\shims\python3.EXE'
 
+" py2
 let g:loaded_python_provider = 0
 let g:loaded_ruby_provider = 0
 let g:loaded_perl_provider = 0
@@ -129,7 +130,9 @@ call plug#end()
 " Plugins Settings
 ""
 
+""""
 "" floaterm
+""""
 nnoremap <silent> <leader>' :FloatermToggle<CR>
 tnoremap <silent> <leader>' <C-\><C-n>:FloatermToggle<CR>
 
@@ -138,60 +141,30 @@ map <F11> :FloatermNew make run<CR>
 
 map <F2> :call CocAction('format')<CR>
 
+""""
 "" theme
+""""
 set background=dark
 colorscheme gruvbox
 
-
+""""
 "" lua-line
-lua << EOF
-require'lualine'.setup {
-  options = {
-    icons_enabled = true,
-    theme = 'gruvbox',
-    section_separators = {'', ''},
-    component_separators = {'', ''},
-    disabled_filetypes = {}
-  },
-  sections = {
-    lualine_a = {'mode'},
-    lualine_b = {'branch', 'diff'},
-    lualine_c = {'filename', {'g:coc_status', 'bo:filetype'}},
-    lualine_x = {'encoding', 'fileformat', 'filetype'},
-    lualine_y = {'progress'},
-    lualine_z = {'location'}
-  },
-  inactive_sections = {
-    lualine_a = {},
-    lualine_b = {},
-    lualine_c = {'filename'},
-    lualine_x = {'location'},
-    lualine_y = {},
-    lualine_z = {}
-  },
-  tabline = {},
-  extensions = {}
-}
-EOF
+""""
+lua require('lualine_config')
 
 """"
 "" treesitter
 """"
-lua <<EOF
-require'nvim-treesitter.configs'.setup {
-  -- ensure_installed = "maintained", -- one of "all", "maintained" (parsers with maintainers), or a list of languages
-  -- ignore_install = { "javascript" }, -- List of parsers to ignore installing
-  highlight = {
-    enable = true,              -- false will disable the whole extension
-    -- disable = { "c", "rust" },  -- list of language that will be disabled
-    -- Setting this to true will run `:h syntax` and tree-sitter at the same time.
-    -- Set this to `true` if you depend on 'syntax' being enabled (like for indentation).
-    -- Using this option may slow down your editor, and you may see some duplicate highlights.
-    -- Instead of true it can also be a list of languages
-    additional_vim_regex_highlighting = true,
-  },
-}
-EOF
+lua require('treesitter_config')
+
+"""
+" telescope
+"""
+"nnoremap <space>ff <cmd>lua require'telescope.builtin'.find_files(require('telescope.themes').get_dropdown({ winblend = 10 }))<cr>
+nnoremap <space>ff <cmd>lua require'telescope.builtin'.find_files()<cr>
+nnoremap <space>fg <cmd>lua require('telescope.builtin').live_grep()<cr>
+nnoremap <space>tt <cmd>Telescope builtin<cr>
+lua require('telescope_config')
 
 """"
 "" coc-settings
@@ -218,14 +191,14 @@ inoremap <silent><expr> <cr> pumvisible() ? coc#_select_confirm()
                               \: "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
 
 " Use `:CocDiagnostics` to get all diagnostics of current buffer in location list.
-nmap <silent> <space>ee :Telescope coc diagnostics<CR>
+nmap <silent> <space>ee :Telescope coc workspace_diagnostics<CR>
 nmap <silent> [e <Plug>(coc-diagnostic-prev)
 nmap <silent> ]e <Plug>(coc-diagnostic-next)
 
 " GoTo code navigation.
 "nmap <silent> gd <Plug>(coc-definition)
 nmap <silent> gd :Telescope coc definitions<CR>
-nmap <silent> gy <Plug>(coc-type-definition)
+" nmap <silent> gy <Plug>(coc-type-definition)
 "nmap <silent> gi <Plug>(coc-implementation)
 nmap <silent> gi :Telescope coc implementations<CR>
 "nmap <silent> gr <Plug>(coc-references)
@@ -242,12 +215,3 @@ function! s:show_documentation()
         call CocAction('doHover')
     endif
 endfunction
-
-"""
-" telescope
-"""
-
-"nnoremap <space>ff <cmd>lua require'telescope.builtin'.find_files(require('telescope.themes').get_dropdown({ winblend = 10 }))<cr>
-nnoremap <space>ff <cmd>lua require'telescope.builtin'.find_files()<cr>
-nnoremap <space>fg <cmd>lua require('telescope.builtin').live_grep()<cr>
-lua require('telescope_config')

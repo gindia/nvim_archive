@@ -1,5 +1,6 @@
 *
 !.gitignore
+
 !ginit.vim
 !init.vim
-!**/lua/telescope_config.lua
+!lua/*
