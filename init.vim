@@ -31,6 +31,8 @@ vnoremap K :m '<-2<CR>gv=gv
 nnoremap <leader>j :m .+1<CR>==
 nnoremap <leader>k :m .-2<CR>==
 
+set mouse=a
+
 set exrc
 set secure
 set termguicolors
@@ -162,9 +164,9 @@ lua require('treesitter_config')
 " telescope
 """
 "nnoremap <space>ff <cmd>lua require'telescope.builtin'.find_files(require('telescope.themes').get_dropdown({ winblend = 10 }))<cr>
-nnoremap <space>ff <cmd>lua require'telescope.builtin'.find_files()<cr>
-nnoremap <space>fg <cmd>lua require('telescope.builtin').live_grep()<cr>
-nnoremap <space>tt <cmd>Telescope builtin<cr>
+nnoremap <leader>ff <cmd>lua require'telescope.builtin'.find_files()<cr>
+nnoremap <leader>fg <cmd>lua require('telescope.builtin').live_grep()<cr>
+nnoremap <leader>tt <cmd>Telescope builtin<cr>
 lua require('telescope_config')
 
 """"
@@ -192,7 +194,7 @@ inoremap <silent><expr> <cr> pumvisible() ? coc#_select_confirm()
                               \: "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
 
 " Use `:CocDiagnostics` to get all diagnostics of current buffer in location list.
-nmap <silent> <space>ee :Telescope coc workspace_diagnostics<CR>
+nmap <silent> <leader>ee :Telescope coc workspace_diagnostics<CR>
 nmap <silent> [e <Plug>(coc-diagnostic-prev)
 nmap <silent> ]e <Plug>(coc-diagnostic-next)
 
@@ -206,7 +208,7 @@ nmap <silent> gi :Telescope coc implementations<CR>
 nmap <silent> gr :Telescope coc references<CR>
 nmap <space>r <Plug>(coc-rename)
 "nmap <space>qf  <Plug>(coc-codeaction)
-nmap <silent> <leader>qf :Telescope coc code_actions<CR>
+nmap <silent> <leader>qf :Telescope coc line_code_actions<CR>
 
 nnoremap <silent> K :call <SID>show_documentation()<CR>
 function! s:show_documentation()
