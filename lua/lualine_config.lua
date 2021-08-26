@@ -9,7 +9,7 @@ require'lualine'.setup {
   sections = {
     lualine_a = {'mode'},
     lualine_b = {'branch', 'diff'},
-    lualine_c = {'filename', {'g:coc_status', 'bo:filetype'}},
+    lualine_c = {'filename', {require'lsp-status'.status, 'bo:filetype'}},
     lualine_x = {'encoding', 'fileformat', 'filetype'},
     lualine_y = {'progress'},
     lualine_z = {'location'}

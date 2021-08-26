@@ -127,6 +127,7 @@ call plug#begin()
   Plug 'kyazdani42/nvim-web-devicons'
 
   Plug 'hoob3rt/lualine.nvim'
+  Plug 'nvim-lua/lsp-status.nvim'
 
   "floating termguicolors
   Plug 'voldikss/vim-floaterm'
