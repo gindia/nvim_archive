@@ -194,3 +194,9 @@ autocmd FileType lua lua require'cmp'.setup.buffer {
 \     { name = 'nvim_lua' },
 \   },
 \ }
+
+nnoremap <silent> gd         <cmd>Telescope lsp_definitions<CR>
+nnoremap <silent> gi         <cmd>Telescope lsp_implementations<CR>
+nnoremap <silent> <space>ee  <cmd>Telescope lsp_workspace_diagnostics<CR>
+nnoremap <silent> <leader>qf <cmd>Telescope lsp_code_actions<CR>
+nnoremap <silent> gr         <cmd>Telescope lsp_references<CR>
