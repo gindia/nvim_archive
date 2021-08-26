@@ -1,10 +1,13 @@
 local cmp = require('cmp')
 
+local luasnip = require 'luasnip'
+
 cmp.setup {
   snippet = {
     expand = function(args)
       -- You must install `vim-vsnip` if you use the following as-is.
-      vim.fn['vsnip#anonymous'](args.body)
+      -- vim.fn['vsnip#anonymous'](args.body)
+      require('luasnip').lsp_expand(args.body)
     end
   },
 
@@ -26,7 +29,9 @@ cmp.setup {
 
   -- You should specify your *installed* sources.
   sources = {
-    { name = 'buffer' },
+    { name = 'nvim_lsp' },
+    { name = 'luasnip'  },
+    --{ name = 'buffer' },
   },
 }
 

@@ -110,6 +110,11 @@ call plug#begin()
   Plug 'hrsh7th/nvim-cmp'
   Plug 'hrsh7th/cmp-buffer'
   Plug 'hrsh7th/cmp-nvim-lua'
+  Plug 'hrsh7th/cmp-nvim-lsp'
+
+  " lsp snip
+  Plug 'saadparwaiz1/cmp_luasnip'
+  Plug 'L3MON4D3/LuaSnip'
 
   " RipGrep
   Plug 'jremmen/vim-ripgrep'
@@ -184,6 +189,8 @@ lua require('telescope_config')
 "" nvimlsp
 """"
 lua require('lsp_config')
+
+lua require 'luasnip'
 
 lua require('cmp_config')
 
