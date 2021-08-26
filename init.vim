@@ -103,10 +103,13 @@ call plug#begin()
   Plug 'nvim-telescope/telescope.nvim'
   Plug 'nvim-telescope/telescope-fzf-native.nvim', { 'do': 'make' }
 
-
   " LSP
-  Plug 'neoclide/coc.nvim', {'branch': 'release'}
-  Plug 'fannheyward/telescope-coc.nvim'
+  Plug 'neovim/nvim-lspconfig'
+
+  " lsp completion
+  Plug 'hrsh7th/nvim-cmp'
+  Plug 'hrsh7th/cmp-buffer'
+  Plug 'hrsh7th/cmp-nvim-lua'
 
   " RipGrep
   Plug 'jremmen/vim-ripgrep'
@@ -120,7 +123,8 @@ call plug#begin()
 
   " COLORS
   Plug 'gruvbox-community/gruvbox'
-  Plug 'ryanoasis/vim-devicons'
+  "Plug 'ryanoasis/vim-devicons'
+  Plug 'kyazdani42/nvim-web-devicons'
 
   Plug 'hoob3rt/lualine.nvim'
 
@@ -142,7 +146,13 @@ tnoremap <silent> <leader>' <C-\><C-n>:FloatermToggle<CR>
 map <F12> :FloatermNew make<CR>
 map <F11> :FloatermNew make run<CR>
 
-map <F2> :call CocAction('format')<CR>
+"map <F2> :call CocAction('format')<CR>
+"
+
+""""
+"" devicons
+""""
+lua require('nvim-web-devicons')
 
 """"
 "" theme
@@ -170,51 +180,16 @@ nnoremap <leader>tt <cmd>Telescope builtin<cr>
 lua require('telescope_config')
 
 """"
-"" coc-settings
+"" nvimlsp
 """"
-lua require('telescope').load_extension('coc')
+lua require('lsp_config')
 
-inoremap <silent><expr> <TAB>
-      \ pumvisible() ? "\<C-n>" :
-      \ <SID>check_back_space() ? "\<TAB>" :
-      \ coc#refresh()
+lua require('cmp_config')
 
-function! s:check_back_space() abort
-  let col = col('.') - 1
-  return !col || getline('.')[col - 1]  =~# '\s'
-endfunction
-
-inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
-
-inoremap <silent><expr> <c-space> coc#refresh()
-
-" Make <CR> auto-select the first completion item and notify coc.nvim to
-" format on enter, <cr> could be remapped by other vim plugin
-inoremap <silent><expr> <cr> pumvisible() ? coc#_select_confirm()
-                              \: "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
-
-" Use `:CocDiagnostics` to get all diagnostics of current buffer in location list.
-nmap <silent> <leader>ee :Telescope coc workspace_diagnostics<CR>
-nmap <silent> [e <Plug>(coc-diagnostic-prev)
-nmap <silent> ]e <Plug>(coc-diagnostic-next)
-
-" GoTo code navigation.
-"nmap <silent> gd <Plug>(coc-definition)
-nmap <silent> gd :Telescope coc definitions<CR>
-" nmap <silent> gy <Plug>(coc-type-definition)
-"nmap <silent> gi <Plug>(coc-implementation)
-nmap <silent> gi :Telescope coc implementations<CR>
-"nmap <silent> gr <Plug>(coc-references)
-nmap <silent> gr :Telescope coc references<CR>
-nmap <space>r <Plug>(coc-rename)
-"nmap <space>qf  <Plug>(coc-codeaction)
-nmap <silent> <leader>qf :Telescope coc line_code_actions<CR>
-
-nnoremap <silent> K :call <SID>show_documentation()<CR>
-function! s:show_documentation()
-    if index(['vim', 'help'], &filetype) >= 0
-        execute 'help ' . expand('<cword>')
-    else
-        call CocAction('doHover')
-    endif
-endfunction
+" Setup buffer configuration (nvim-lua source only enables in Lua filetype).
+autocmd FileType lua lua require'cmp'.setup.buffer {
+\   sources = {
+\     { name = 'buffer' },
+\     { name = 'nvim_lua' },
+\   },
+\ }
