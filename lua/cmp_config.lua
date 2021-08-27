@@ -2,19 +2,20 @@ local cmp = require('cmp')
 
 local luasnip = require 'luasnip'
 
+-- Set completeopt to have a better completion experience
+vim.o.completeopt = 'menuone,noselect'
+
 cmp.setup {
   snippet = {
     expand = function(args)
       -- You must install `vim-vsnip` if you use the following as-is.
       -- vim.fn['vsnip#anonymous'](args.body)
-      require('luasnip').lsp_expand(args.body)
+      luasnip.lsp_expand(args.body)
     end
   },
 
   -- You can set mapping if you want.
   mapping = {
-    --['<C-p>'] = cmp.mapping.select_prev_item(),
-    --['<C-n>'] = cmp.mapping.select_next_item(),
     ['<S-Tab>'] = cmp.mapping.select_prev_item(),
     ['<Tab>'] = cmp.mapping.select_next_item(),
     ['<C-d>'] = cmp.mapping.scroll_docs(-4),
@@ -24,14 +25,14 @@ cmp.setup {
     ['<CR>'] = cmp.mapping.confirm({
       behavior = cmp.ConfirmBehavior.Insert,
       select = true,
-    })
+    }),
   },
 
   -- You should specify your *installed* sources.
   sources = {
     { name = 'nvim_lsp' },
     { name = 'luasnip'  },
-    --{ name = 'buffer' },
+    { name = 'buffer' },
   },
 }
 

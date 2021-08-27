@@ -188,22 +188,14 @@ lua require('telescope_config')
 """"
 "" nvimlsp
 """"
+lua require('lsp_lua_config')
 lua require('lsp_config')
 
-lua require 'luasnip'
-
 lua require('cmp_config')
-
-" Setup buffer configuration (nvim-lua source only enables in Lua filetype).
-autocmd FileType lua lua require'cmp'.setup.buffer {
-\   sources = {
-\     { name = 'buffer' },
-\     { name = 'nvim_lua' },
-\   },
-\ }
+lua require('luasnip')
 
 nnoremap <silent> gd         <cmd>Telescope lsp_definitions<CR>
 nnoremap <silent> gi         <cmd>Telescope lsp_implementations<CR>
-nnoremap <silent> <space>ee  <cmd>Telescope lsp_workspace_diagnostics<CR>
+nnoremap <silent> <space>ee  <cmd>Telescope lsp_document_diagnostics<CR>
 nnoremap <silent> <leader>qf <cmd>Telescope lsp_code_actions<CR>
 nnoremap <silent> gr         <cmd>Telescope lsp_references<CR>
