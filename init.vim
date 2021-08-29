@@ -2,7 +2,7 @@
 " --------------------------------
 "  	      v 0.5
 "  	  NeoVim Settings
-"  	    for windows
+"  	    for linux
 " --------------------------------
 " --------------------------------
 ""
@@ -70,7 +70,6 @@ set noerrorbells
 set nospell
 
 highlight colorcolumn ctermbg=darkgray
-let g:python3_host_prog='C:\Users\og\scoop\shims\python3.EXE'
 
 " py2
 let g:loaded_python_provider = 0
@@ -151,9 +150,6 @@ tnoremap <silent> <leader>' <C-\><C-n>:FloatermToggle<CR>
 
 map <F12> :FloatermNew make<CR>
 map <F11> :FloatermNew make run<CR>
-
-"map <F2> :call CocAction('format')<CR>
-"
 
 """"
 "" devicons
