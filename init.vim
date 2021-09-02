@@ -108,8 +108,11 @@ call plug#begin()
   " lsp completion
   Plug 'hrsh7th/nvim-cmp'
   Plug 'hrsh7th/cmp-buffer'
+  Plug 'hrsh7th/cmp-path'
   Plug 'hrsh7th/cmp-nvim-lua'
   Plug 'hrsh7th/cmp-nvim-lsp'
+  Plug 'saecki/crates.nvim'
+
 
   " lsp snip
   Plug 'saadparwaiz1/cmp_luasnip'
