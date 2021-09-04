@@ -5,6 +5,7 @@
 "  	    for linux
 " --------------------------------
 " --------------------------------
+
 ""
 " Non Plugins settings.
 ""
@@ -13,11 +14,13 @@ let mapleader=" "
 " window
 map <leader>w <C-w>
 
+" folder nav
 nnoremap <silent> <C-n> :Explore<CR>
+
 " copy from cursor to the end of line
 nnoremap Y y$
 
-" better undo
+" better undo -> breaks on . , ! ?
 inoremap , ,<c-g>u
 inoremap . .<c-g>u
 inoremap ! !<c-g>u
@@ -112,8 +115,6 @@ call plug#begin()
   Plug 'hrsh7th/cmp-nvim-lua'
   Plug 'hrsh7th/cmp-nvim-lsp'
   Plug 'saecki/crates.nvim'
-
-
   " lsp snip
   Plug 'saadparwaiz1/cmp_luasnip'
   Plug 'L3MON4D3/LuaSnip'
@@ -128,15 +129,14 @@ call plug#begin()
   " Git source controll
   Plug 'tpope/vim-fugitive'
 
-  " COLORS
+  " Colors
   Plug 'gruvbox-community/gruvbox'
-  "Plug 'ryanoasis/vim-devicons'
   Plug 'kyazdani42/nvim-web-devicons'
 
   Plug 'hoob3rt/lualine.nvim'
   Plug 'nvim-lua/lsp-status.nvim'
 
-  "floating termguicolors
+  " Floating terminal
   Plug 'voldikss/vim-floaterm'
 
 call plug#end()
