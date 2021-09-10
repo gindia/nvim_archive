@@ -150,7 +150,7 @@ nnoremap <silent> <leader>' :FloatermToggle<CR>
 tnoremap <silent> <leader>' <C-\><C-n>:FloatermToggle<CR>
 
 map <F12> :FloatermNew make<CR>
-map <F11> :FloatermNew make run<CR>
+map <F9> :FloatermNew make run<CR>
 
 "map <F2> :call CocAction('format')<CR>
 "
