@@ -37,9 +37,19 @@ local on_attach = function(client, bufnr)
 
 end
 
+--- setting up sqlls https://github.com/joe-re/sql-language-server.
+nvim_lsp.sqlls.setup {
+  cmd = {"/usr/bin/sql-language-server", "up", "--method", "stdio"};
+  on_attach = on_attach,
+  flags = {
+    debounce_text_changes = 150,
+  },
+  ...
+}
+
 -- Use a loop to conveniently call 'setup' on multiple servers and
 -- map buffer local keybindings when the language server attaches
-local servers = { 'clangd', 'rust_analyzer', 'tsserver', 'vimls', 'pyright', 'bashls', 'zls'}
+local servers = { 'clangd', 'rust_analyzer', 'tsserver', 'vimls', 'pyright', 'bashls', 'zls', 'csharp_ls' }
 for _, lsp in ipairs(servers) do
   nvim_lsp[lsp].setup {
     on_attach = on_attach,
