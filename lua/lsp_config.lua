@@ -37,9 +37,8 @@ local on_attach = function(client, bufnr)
 
 end
 
---- setting up sqlls https://github.com/joe-re/sql-language-server.
-nvim_lsp.sqlls.setup {
-  cmd = {"/usr/bin/sql-language-server", "up", "--method", "stdio"};
+nvim_lsp.sqls.setup {
+  cmd = {"/usr/bin/sqls"};
   on_attach = on_attach,
   flags = {
     debounce_text_changes = 150,
@@ -56,6 +55,7 @@ for _, lsp in ipairs(servers) do
     flags = {
       debounce_text_changes = 150,
     },
+    ...
   }
 end
 
