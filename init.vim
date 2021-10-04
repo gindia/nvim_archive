@@ -105,8 +105,13 @@ call plug#begin()
   Plug 'nvim-telescope/telescope.nvim'
   Plug 'nvim-telescope/telescope-fzf-native.nvim', { 'do': 'make' }
 
+  " OrgMode
+  Plug 'kristijanhusak/orgmode.nvim'
+
   " LSP
   Plug 'neovim/nvim-lspconfig'
+  Plug 'kabouzeid/nvim-lspinstall'
+
 
   " lsp completion
   Plug 'hrsh7th/nvim-cmp'
@@ -147,6 +152,17 @@ call plug#end()
 ""
 " Plugins Settings
 ""
+
+""""
+"" OrgMode
+""""
+" init.vim
+lua << EOF
+require('orgmode').setup({
+  org_agenda_files = {'~/Documents/Orgs/**/*'},
+  org_default_notes_file = '~/Documents/Orgs/refile.org',
+})
+EOF
 
 """"
 "" floaterm
