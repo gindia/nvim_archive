@@ -64,7 +64,6 @@ set shiftround
 set hidden
 set noswapfile
 set nobackup
-set colorcolumn=100
 set nowritebackup
 set updatetime=100
 set cursorline
@@ -72,9 +71,10 @@ set noerrorbells
 
 set nospell
 
+set colorcolumn=100
 highlight colorcolumn ctermbg=darkgray
 
-" py2
+" disable unused providers.
 let g:loaded_python_provider = 0
 let g:loaded_ruby_provider = 0
 let g:loaded_perl_provider = 0
@@ -131,6 +131,9 @@ call plug#begin()
 
   " Colors
   Plug 'gruvbox-community/gruvbox'
+
+  Plug 'projekt0n/github-nvim-theme'
+
   Plug 'kyazdani42/nvim-web-devicons'
 
   Plug 'hoob3rt/lualine.nvim'
@@ -162,8 +165,9 @@ lua require('nvim-web-devicons')
 """"
 "" theme
 """"
-set background=dark
-colorscheme gruvbox
+"set background=dark
+"colorscheme gruvbox
+lua require('github-theme').setup( {theme_style = "dark_default", ... } )
 
 """"
 "" lua-line
