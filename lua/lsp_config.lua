@@ -37,18 +37,9 @@ local on_attach = function(client, bufnr)
 
 end
 
-nvim_lsp.sqls.setup {
-  cmd = {"/usr/bin/sqls"};
-  on_attach = on_attach,
-  flags = {
-    debounce_text_changes = 150,
-  },
-  ...
-}
-
 -- Use a loop to conveniently call 'setup' on multiple servers and
 -- map buffer local keybindings when the language server attaches
-local servers = { 'clangd', 'rust_analyzer', 'tsserver', 'vimls', 'pyright', 'bashls', 'zls', 'csharp_ls' }
+local servers = { 'clangd', 'rust_analyzer', 'tsserver', 'vimls', 'pyright', 'bashls', 'zls'}
 for _, lsp in ipairs(servers) do
   nvim_lsp[lsp].setup {
     on_attach = on_attach,

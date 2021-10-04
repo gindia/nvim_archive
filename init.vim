@@ -105,6 +105,9 @@ call plug#begin()
   Plug 'nvim-telescope/telescope.nvim'
   Plug 'nvim-telescope/telescope-fzf-native.nvim', { 'do': 'make' }
 
+  " minimap
+  Plug 'wfxr/minimap.vim'
+
   " LSP
   Plug 'neovim/nvim-lspconfig'
 
@@ -144,6 +147,14 @@ call plug#end()
 ""
 " Plugins Settings
 ""
+
+""""
+"" minimap
+""""
+let g:minimap_width = 10
+let g:minimap_auto_start = 1
+let g:minimap_auto_start_win_enter = 1
+
 
 """"
 "" floaterm
