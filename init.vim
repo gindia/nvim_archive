@@ -112,7 +112,6 @@ call plug#begin()
   Plug 'neovim/nvim-lspconfig'
   Plug 'kabouzeid/nvim-lspinstall'
 
-
   " lsp completion
   Plug 'hrsh7th/nvim-cmp'
   Plug 'hrsh7th/cmp-buffer'
@@ -130,6 +129,11 @@ call plug#begin()
   " syntax highlight
   Plug 'sheerun/vim-polyglot'
   Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}  " We recommend updating the parsers on update
+
+  " Debuging
+  Plug 'mfussenegger/nvim-dap'
+  Plug 'Pocco81/DAPInstall.nvim'
+  Plug 'nvim-telescope/telescope-dap.nvim'
 
   " Git source controll
   Plug 'tpope/vim-fugitive'
@@ -195,6 +199,11 @@ lua require('lualine_config')
 """"
 lua require('treesitter_config')
 
+""""
+"" Debuging
+""""
+lua require'dap_config'
+
 """
 " telescope
 """
@@ -218,3 +227,4 @@ nnoremap <silent> gi         <cmd>Telescope lsp_implementations<CR>
 nnoremap <silent> <space>ee  <cmd>Telescope lsp_document_diagnostics<CR>
 nnoremap <silent> <leader>qf <cmd>Telescope lsp_code_actions<CR>
 nnoremap <silent> gr         <cmd>Telescope lsp_references<CR>
+
