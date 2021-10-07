@@ -142,11 +142,12 @@ call plug#begin()
 
   " Colors
   Plug 'gruvbox-community/gruvbox'
-
   Plug 'projekt0n/github-nvim-theme'
 
+  " Icons
   Plug 'kyazdani42/nvim-web-devicons'
 
+  " staus line.
   Plug 'hoob3rt/lualine.nvim'
   Plug 'nvim-lua/lsp-status.nvim'
 
@@ -190,16 +191,16 @@ map <F9> :FloatermNew make run<CR>
 lua require('nvim-web-devicons')
 
 """"
+"" lua-line
+""""
+lua require('lualine_config')
+
+""""
 "" theme
 """"
 "set background=dark
 "colorscheme gruvbox
 lua require('github-theme').setup( {theme_style = "dimmed", ... } )
-
-""""
-"" lua-line
-""""
-lua require('lualine_config')
 
 """"
 "" treesitter
@@ -234,4 +235,3 @@ nnoremap <silent> gi         <cmd>Telescope lsp_implementations<CR>
 nnoremap <silent> <space>ee  <cmd>Telescope lsp_document_diagnostics<CR>
 nnoremap <silent> <leader>qf <cmd>Telescope lsp_code_actions<CR>
 nnoremap <silent> gr         <cmd>Telescope lsp_references<CR>
-
