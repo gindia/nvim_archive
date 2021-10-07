@@ -107,6 +107,8 @@ call plug#begin()
 
   " OrgMode
   Plug 'kristijanhusak/orgmode.nvim'
+  Plug 'akinsho/org-bullets.nvim'
+  Plug 'dhruvasagar/vim-table-mode'
 
   " LSP
   Plug 'neovim/nvim-lspconfig'
@@ -166,6 +168,11 @@ require('orgmode').setup({
   org_agenda_files = {'~/Documents/Orgs/**/*'},
   org_default_notes_file = '~/Documents/Orgs/refile.org',
 })
+
+require("org-bullets").setup({
+  symbols = { "◉", "○", "✸", "✿" }
+})
+
 EOF
 
 """"
@@ -187,7 +194,7 @@ lua require('nvim-web-devicons')
 """"
 "set background=dark
 "colorscheme gruvbox
-lua require('github-theme').setup( {theme_style = "dark_default", ... } )
+lua require('github-theme').setup( {theme_style = "dimmed", ... } )
 
 """"
 "" lua-line
