@@ -1,6 +1,3 @@
-<<<<<<< HEAD
-**/plugged/*
-=======
 *
 !.gitignore
 
@@ -10,4 +7,3 @@
 !lua/*
 
 !coc-settings.json
->>>>>>> linux-neolsp
