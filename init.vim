@@ -1,34 +1,26 @@
 " --------------------------------
 " --------------------------------
-"  	  NeoVim Settings
 "  	      v 0.5
+"  	  NeoVim Settings
+"  	    for linux
 " --------------------------------
 " --------------------------------
-""
-" GUI settings 'neovide'
-""
-set mouse=a
-if has('win32')
-    set guifont="SauceCodePro NF"
-else
-    " default to Linux
-    set guifont="SourceCodePro"
-endif
 
 ""
 " Non Plugins settings.
 ""
-
 let mapleader=" "
 
 " window
 map <leader>w <C-w>
 
+" folder nav
 nnoremap <silent> <C-n> :Explore<CR>
+
 " copy from cursor to the end of line
 nnoremap Y y$
 
-" better undo
+" better undo -> breaks on . , ! ?
 inoremap , ,<c-g>u
 inoremap . .<c-g>u
 inoremap ! !<c-g>u
@@ -42,7 +34,7 @@ vnoremap K :m '<-2<CR>gv=gv
 nnoremap <leader>j :m .+1<CR>==
 nnoremap <leader>k :m .-2<CR>==
 
-
+set mouse=a
 
 set exrc
 set secure
@@ -62,7 +54,7 @@ set nowrap
 "" tabs
 set expandtab
 set smarttab
-set tabstop=2 shiftwidth=2
+set tabstop=2 shiftwidth=2 "sw:2
 set softtabstop=2
 
 set autoindent
@@ -72,7 +64,6 @@ set shiftround
 set hidden
 set noswapfile
 set nobackup
-set colorcolumn=100
 set nowritebackup
 set updatetime=100
 set cursorline
@@ -80,13 +71,10 @@ set noerrorbells
 
 set nospell
 
+set colorcolumn=100
 highlight colorcolumn ctermbg=darkgray
-if has('win32')
-    let g:python3_host_prog='C:\Program Files\Python39\python.exe'
-else
-    " default to Linux
-endif
 
+" disable unused providers.
 let g:loaded_python_provider = 0
 let g:loaded_ruby_provider = 0
 let g:loaded_perl_provider = 0
@@ -101,7 +89,6 @@ map <S-Q> <nop>
 
 " keymaps
 
-
 " use c not cpp for .h files
 let c_syntax_for_h = 1
 
@@ -112,18 +99,26 @@ let g:termdebug_wide=1
 " Plugins Installs
 ""
 call plug#begin()
-  " Kitty term
-  Plug 'fladson/vim-kitty'
-
   " fancy nav
   Plug 'nvim-lua/popup.nvim'
   Plug 'nvim-lua/plenary.nvim'
   Plug 'nvim-telescope/telescope.nvim'
-  Plug 'nvim-telescope/telescope-fzy-native.nvim'
+  Plug 'nvim-telescope/telescope-fzf-native.nvim', { 'do': 'make' }
 
   " LSP
-  Plug 'neoclide/coc.nvim', {'branch': 'release'}
-  Plug 'fannheyward/telescope-coc.nvim'
+  Plug 'neovim/nvim-lspconfig'
+  Plug 'kabouzeid/nvim-lspinstall'
+
+  " lsp completion
+  Plug 'hrsh7th/nvim-cmp'
+  Plug 'hrsh7th/cmp-buffer'
+  Plug 'hrsh7th/cmp-path'
+  Plug 'hrsh7th/cmp-nvim-lua'
+  Plug 'hrsh7th/cmp-nvim-lsp'
+  Plug 'saecki/crates.nvim'
+  " lsp snip
+  Plug 'saadparwaiz1/cmp_luasnip'
+  Plug 'L3MON4D3/LuaSnip'
 
   " RipGrep
   Plug 'jremmen/vim-ripgrep'
@@ -132,16 +127,26 @@ call plug#begin()
   Plug 'sheerun/vim-polyglot'
   Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}  " We recommend updating the parsers on update
 
+  " Debuging
+  Plug 'mfussenegger/nvim-dap'
+  Plug 'Pocco81/DAPInstall.nvim'
+  Plug 'nvim-telescope/telescope-dap.nvim'
+
   " Git source controll
   Plug 'tpope/vim-fugitive'
 
-  " COLORS
+  " Colors
   Plug 'gruvbox-community/gruvbox'
-  Plug 'ryanoasis/vim-devicons'
+  Plug 'projekt0n/github-nvim-theme'
 
+  " Icons
+  Plug 'kyazdani42/nvim-web-devicons'
+
+  " staus line.
   Plug 'hoob3rt/lualine.nvim'
+  Plug 'nvim-lua/lsp-status.nvim'
 
-  "floating termguicolors
+  " Floating terminal
   Plug 'voldikss/vim-floaterm'
 
 call plug#end()
@@ -150,127 +155,63 @@ call plug#end()
 " Plugins Settings
 ""
 
+""""
 "" floaterm
+""""
 nnoremap <silent> <leader>' :FloatermToggle<CR>
 tnoremap <silent> <leader>' <C-\><C-n>:FloatermToggle<CR>
 
-" make
-map <F12> <C-w>l:FloatermNew make<CR>
+map <F12> :FloatermNew make<CR>
+map <F9> :FloatermNew make run<CR>
 
+""""
+"" devicons
+""""
+lua require('nvim-web-devicons')
 
-"" theme
-set background=dark
-colorscheme gruvbox
-
-
+""""
 "" lua-line
-lua << EOF
-require'lualine'.setup {
-  options = {
-    icons_enabled = true,
-    theme = 'gruvbox',
-    component_separators = {'', ''},
-    section_separators = {'', ''},
-    disabled_filetypes = {}
-  },
-  sections = {
-    lualine_a = {'mode'},
-    lualine_b = {'branch', 'diff'},
-    lualine_c = {'filename', {'g:coc_status', 'bo:filetype'}},
-    lualine_x = {'encoding', 'fileformat', 'filetype'},
-    lualine_y = {'progress'},
-    lualine_z = {'location'}
-  },
-  inactive_sections = {
-    lualine_a = {},
-    lualine_b = {},
-    lualine_c = {'filename'},
-    lualine_x = {'location'},
-    lualine_y = {},
-    lualine_z = {}
-  },
-  tabline = {},
-  extensions = {}
-}
-EOF
+""""
+lua require('lualine_config')
 
-" Use autocmd to force lightline update.
-"autocmd User CocStatusChange,CocDiagnosticChange call lightline#update()
-"
+""""
+"" theme
+""""
+"set background=dark
+"colorscheme gruvbox
+lua require('github-theme').setup( {theme_style = "dimmed", ... } )
+
 """"
 "" treesitter
 """"
-lua <<EOF
-require'nvim-treesitter.configs'.setup {
-  -- ensure_installed = "maintained", -- one of "all", "maintained" (parsers with maintainers), or a list of languages
-  -- ignore_install = { "javascript" }, -- List of parsers to ignore installing
-  highlight = {
-    enable = true,              -- false will disable the whole extension
-    -- disable = { "c", "rust" },  -- list of language that will be disabled
-    -- Setting this to true will run `:h syntax` and tree-sitter at the same time.
-    -- Set this to `true` if you depend on 'syntax' being enabled (like for indentation).
-    -- Using this option may slow down your editor, and you may see some duplicate highlights.
-    -- Instead of true it can also be a list of languages
-    additional_vim_regex_highlighting = true,
-  },
-}
-EOF
+lua require('treesitter_config')
 
 """"
-"" coc-settings
+"" Debuging
 """"
-lua require('telescope').load_extension('coc')
-
-inoremap <silent><expr> <TAB>
-      \ pumvisible() ? "\<C-n>" :
-      \ <SID>check_back_space() ? "\<TAB>" :
-      \ coc#refresh()
-
-function! s:check_back_space() abort
-  let col = col('.') - 1
-  return !col || getline('.')[col - 1]  =~# '\s'
-endfunction
-
-inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
-
-inoremap <silent><expr> <c-space> coc#refresh()
-
-" Make <CR> auto-select the first completion item and notify coc.nvim to
-" format on enter, <cr> could be remapped by other vim plugin
-inoremap <silent><expr> <cr> pumvisible() ? coc#_select_confirm()
-                              \: "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
-
-" Use `:CocDiagnostics` to get all diagnostics of current buffer in location list.
-nmap <silent> <leader> ee :Telescope coc diagnostics<CR>
-nmap <silent> [e <Plug>(coc-diagnostic-prev)
-nmap <silent> ]e <Plug>(coc-diagnostic-next)
-
-" GoTo code navigation.
-"nmap <silent> gd <Plug>(coc-definition)
-nmap <silent> gd :Telescope coc definitions<CR>
-"nmap <silent> gy <Plug>(coc-type-definition)
-nmap <silent> gy :Telescope coc type_definitions<CR>
-"nmap <silent> gi <Plug>(coc-implementation)
-nmap <silent> gi :Telescope coc implementations<CR>
-"nmap <silent> gr <Plug>(coc-references)
-nmap <silent> gr :Telescope coc references<CR>
-nmap <leader>r <Plug>(coc-rename)
-nmap <leader>qf  <Plug>(coc-codeaction)
-
-nnoremap <silent> K :call <SID>show_documentation()<CR>
-function! s:show_documentation()
-    if index(['vim', 'help'], &filetype) >= 0
-        execute 'help ' . expand('<cword>')
-    else
-        call CocAction('doHover')
-    endif
-endfunction
+lua require'dap_config'
 
 """
 " telescope
 """
-
-"nnoremap <leader>ff <cmd>lua require'telescope.builtin'.find_files(require('telescope.themes').get_dropdown({ winblend = 10 }))<cr>
+"nnoremap <space>ff <cmd>lua require'telescope.builtin'.find_files(require('telescope.themes').get_dropdown({ winblend = 10 }))<cr>
 nnoremap <leader>ff <cmd>lua require'telescope.builtin'.find_files()<cr>
 nnoremap <leader>fg <cmd>lua require('telescope.builtin').live_grep()<cr>
+nnoremap <leader>tt <cmd>Telescope builtin<cr>
+
 lua require('telescope_config')
+
+""""
+"" nvimlsp
+""""
+lua require('lsp_lua_config')
+lua require('lsp_config')
+
+lua require('cmp_config')
+lua require('luasnip')
+
+nnoremap <silent> gd         <cmd>Telescope lsp_definitions<CR>
+nnoremap <silent> gi         <cmd>Telescope lsp_implementations<CR>
+nnoremap <silent> <space>ee  <cmd>Telescope lsp_workspace_diagnostics<CR>
+nnoremap <silent> <leader>qf <cmd>Telescope lsp_code_actions<CR>
+nnoremap <silent> gr         <cmd>Telescope lsp_references<CR>

@@ -1,1 +1,13 @@
+<<<<<<< HEAD
 **/plugged/*
+=======
+*
+!.gitignore
+
+!ginit.vim
+!init.vim
+!lua/
+!lua/*
+
+!coc-settings.json
+>>>>>>> linux-neolsp
