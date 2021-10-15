@@ -105,6 +105,9 @@ call plug#begin()
   Plug 'nvim-telescope/telescope.nvim'
   Plug 'nvim-telescope/telescope-fzf-native.nvim', { 'do': 'make' }
 
+  " .md preview
+  Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app && yarn install'  }
+
   " LSP
   Plug 'neovim/nvim-lspconfig'
   Plug 'kabouzeid/nvim-lspinstall'
@@ -154,6 +157,11 @@ call plug#end()
 ""
 " Plugins Settings
 ""
+
+""""
+"" markdown-preview
+""""
+source $XDG_CONFIG_HOME/nvim/vimsript/markdown_conf.vim
 
 """"
 "" floaterm
