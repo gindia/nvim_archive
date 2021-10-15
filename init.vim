@@ -127,8 +127,8 @@ call plug#begin()
   Plug 'jremmen/vim-ripgrep'
 
   " syntax highlight
-  Plug 'sheerun/vim-polyglot'
   Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}  " We recommend updating the parsers on update
+  Plug 'sheerun/vim-polyglot'
 
   " Debuging
   Plug 'mfussenegger/nvim-dap'
@@ -151,6 +151,9 @@ call plug#begin()
 
   " Floating terminal
   Plug 'voldikss/vim-floaterm'
+
+  " Presenting
+  Plug 'sotte/presenting.vim'
 
 call plug#end()
 
