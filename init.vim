@@ -173,6 +173,7 @@ nnoremap <silent> <leader>' :FloatermToggle<CR>
 tnoremap <silent> <leader>' <C-\><C-n>:FloatermToggle<CR>
 
 map <F12> :FloatermNew make<CR>
+map <F10> :FloatermNew make tests<CR>
 map <F9> :FloatermNew make run<CR>
 
 """"
