@@ -40,9 +40,6 @@ end
 
 require'lspinstall'.setup() -- important
 local servers = require'lspinstall'.installed_servers()
-
--- Use a loop to conveniently call 'setup' on multiple servers and
--- map buffer local keybindings when the language server attaches
 -- local servers = { 'clangd', 'rust_analyzer', 'tsserver', 'vimls', 'pyright', 'bashls', 'zls'}
 for _, lsp in ipairs(servers) do
   nvim_lsp[lsp].setup {
