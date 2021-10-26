@@ -172,10 +172,6 @@ source $XDG_CONFIG_HOME/nvim/vimsript/markdown_conf.vim
 nnoremap <silent> <leader>' :FloatermToggle<CR>
 tnoremap <silent> <leader>' <C-\><C-n>:FloatermToggle<CR>
 
-map <F12> :FloatermNew make<CR>
-map <F10> :FloatermNew make tests<CR>
-map <F9> :FloatermNew make run<CR>
-
 """"
 "" devicons
 """"
@@ -227,3 +223,15 @@ nnoremap <silent> gi         <cmd>Telescope lsp_implementations<CR>
 nnoremap <silent> <space>ee  <cmd>Telescope lsp_workspace_diagnostics<CR>
 nnoremap <silent> <leader>qf <cmd>Telescope lsp_code_actions<CR>
 nnoremap <silent> gr         <cmd>Telescope lsp_references<CR>
+
+
+
+
+"""
+" Keybindings
+"""
+map <F12> <cmd>FloatermNew make<CR>
+map <F10> <cmd>FloatermNew make tests<CR>
+map <F9>  <cmd>FloatermNew make run<CR>
+
+autocmd FileType c map <leader>h <cmd>ClangdSwitchSourceHeader<CR>
