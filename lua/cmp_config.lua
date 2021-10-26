@@ -37,7 +37,7 @@ cmp.setup {
     { name = 'buffer' },
     { name = 'path' },
     { name = 'creates' },
-    { name = 'orgmode' },
+    { name = 'rg' },
   },
 }
 

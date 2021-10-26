@@ -121,27 +121,19 @@ call plug#begin()
   Plug 'hrsh7th/cmp-nvim-lua'
   Plug 'hrsh7th/cmp-nvim-lsp'
   Plug 'saecki/crates.nvim'
+  Plug 'lukas-reineke/cmp-rg'
   " lsp snip
   Plug 'saadparwaiz1/cmp_luasnip'
   Plug 'L3MON4D3/LuaSnip'
-
-  " RipGrep
-  Plug 'jremmen/vim-ripgrep'
 
   " syntax highlight
   Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}  " We recommend updating the parsers on update
   Plug 'sheerun/vim-polyglot'
 
-  " Debuging
-  Plug 'mfussenegger/nvim-dap'
-  Plug 'Pocco81/DAPInstall.nvim'
-  Plug 'nvim-telescope/telescope-dap.nvim'
-
   " Git source controll
   Plug 'tpope/vim-fugitive'
 
   " Colors
-  Plug 'gruvbox-community/gruvbox'
   Plug 'projekt0n/github-nvim-theme'
 
   " Icons
@@ -153,9 +145,6 @@ call plug#begin()
 
   " Floating terminal
   Plug 'voldikss/vim-floaterm'
-
-  " Presenting
-  Plug 'sotte/presenting.vim'
 
 call plug#end()
 
@@ -187,19 +176,12 @@ lua require('lualine_config')
 """"
 "" theme
 """"
-"set background=dark
-"colorscheme gruvbox
 lua require('github-theme').setup( {theme_style = "dimmed", ... } )
 
 """"
 "" treesitter
 """"
 lua require('treesitter_config')
-
-""""
-"" Debuging
-""""
-lua require'dap_config'
 
 """
 " telescope
@@ -225,8 +207,6 @@ nnoremap <silent> gi         <cmd>Telescope lsp_implementations<CR>
 nnoremap <silent> <space>ee  <cmd>Telescope lsp_workspace_diagnostics<CR>
 nnoremap <silent> <leader>qf <cmd>Telescope lsp_code_actions<CR>
 nnoremap <silent> gr         <cmd>Telescope lsp_references<CR>
-
-
 
 
 """
