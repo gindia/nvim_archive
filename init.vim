@@ -51,7 +51,7 @@ set sidescrolloff=10
 set scrollback=100000
 set nowrap
 set lcs=tab:..,space:.
-set list
+set nolist
 
 "" tabs
 set expandtab
