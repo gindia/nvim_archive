@@ -121,7 +121,6 @@ call plug#begin()
   Plug 'hrsh7th/cmp-nvim-lua'
   Plug 'hrsh7th/cmp-nvim-lsp'
   Plug 'saecki/crates.nvim'
-  Plug 'lukas-reineke/cmp-rg'
   " lsp snip
   Plug 'saadparwaiz1/cmp_luasnip'
   Plug 'L3MON4D3/LuaSnip'
