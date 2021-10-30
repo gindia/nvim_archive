@@ -145,11 +145,19 @@ call plug#begin()
   " Floating terminal
   Plug 'voldikss/vim-floaterm'
 
+  " smoos so smoos
+  Plug 'karb94/neoscroll.nvim'
+
 call plug#end()
 
 ""
 " Plugins Settings
 ""
+
+""""
+"" smooth scroll (neoscroll)
+""""
+lua require('neoscroll').setup()
 
 """"
 "" markdown-preview
