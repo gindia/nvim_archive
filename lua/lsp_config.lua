@@ -51,4 +51,13 @@ for _, lsp in ipairs(servers) do
   }
 end
 
+nvim_lsp.dartls.setup{
+    on_attach = on_attach,
+    flags = {
+      debounce_text_changes = 150,
+    },
+    ...
+}
+
+
 return nvim_lsp
