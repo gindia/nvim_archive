@@ -14,6 +14,12 @@ let mapleader=" "
 " window
 map <leader>w <C-w>
 
+" remove trailing white space on save
+autocmd BufWritePre * :silent! %s/\s\+$//e
+
+" ex mode disable.
+map <S-Q> <nop>
+
 " folder nav
 nnoremap <silent> <C-n> :Explore<CR>
 
@@ -82,12 +88,6 @@ let g:loaded_ruby_provider = 0
 let g:loaded_perl_provider = 0
 
 set shortmess+=c
-
-" remove trailing white space on save
-autocmd BufWritePre * :silent! %s/\s\+$//e
-
-" ex mode disable.
-map <S-Q> <nop>
 
 " keymaps
 
