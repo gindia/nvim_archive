@@ -224,3 +224,10 @@ map <F10> <cmd>FloatermNew make tests<CR>
 map <F9>  <cmd>FloatermNew make run<CR>
 
 autocmd FileType c map <leader>h <cmd>ClangdSwitchSourceHeader<CR>
+
+
+"""
+" copilot
+""
+imap <silent><script><expr> <C-J> copilot#Accept("\<CR>")
+let g:copilot_no_tab_map = v:true
