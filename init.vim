@@ -92,7 +92,7 @@ set shortmess+=c
 " keymaps
 
 " use c not cpp for .h files
-let c_syntax_for_h = 1
+" let c_syntax_for_h = 1
 
 " termdebug
 let g:termdebug_wide=1
@@ -110,13 +110,14 @@ call plug#begin()
   " .md preview
   Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app && yarn install'  }
 
+
   " LSP
   Plug 'neoclide/coc.nvim', {'branch': 'release'}
   Plug 'fannheyward/telescope-coc.nvim'
 
   " syntax highlight
-  Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}  " We recommend updating the parsers on update
   Plug 'sheerun/vim-polyglot'
+  Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}  " We recommend updating the parsers on update
 
   " Git source controll
   Plug 'tpope/vim-fugitive'
@@ -129,7 +130,10 @@ call plug#begin()
 
   " staus line.
   Plug 'hoob3rt/lualine.nvim'
-  Plug 'nvim-lua/lsp-status.nvim'
+
+  " UI
+  Plug 'MunifTanjim/nui.nvim'
+  Plug 'saecki/crates.nvim'
 
   " Floating terminal
   Plug 'voldikss/vim-floaterm'
@@ -142,6 +146,12 @@ call plug#end()
 ""
 " Plugins Settings
 ""
+
+"""
+" Crates Config
+"""
+lua require('crates').setup()
+
 
 """"
 "" smooth scroll (neoscroll)
@@ -210,7 +220,7 @@ endfunction
 
 " tab completion
 inoremap <silent><expr> <TAB>
-      \ pumvisible() ? coc#_select_confirm() :
+      \ pumvisible() ? "\<C-n>" :
       \ coc#expandableOrJumpable() ? "\<C-r>=coc#rpc#request('doKeymap', ['snippets-expand-jump',''])\<CR>" :
       \ <SID>check_back_space() ? "\<TAB>" :
       \ coc#refresh()
@@ -245,7 +255,6 @@ map <F10> <cmd>FloatermNew make tests<CR>
 map <F9>  <cmd>FloatermNew make run<CR>
 
 autocmd FileType c,cpp map <leader>h <cmd>CocCommand clangd.switchSourceHeader<CR>
-
 
 """
 " copilot

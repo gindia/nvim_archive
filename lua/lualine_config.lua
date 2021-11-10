@@ -9,9 +9,12 @@ require'lualine'.setup {
   },
   sections = {
     lualine_a = {'mode'},
-    lualine_b = {'branch', 'diff',
-                  {'diagnostics', sources={'nvim_lsp', 'coc'}}},
-    lualine_c = {'filename'},
+    lualine_b = { 'branch',
+                  'diff',
+                 {'diagnostics', sources={'coc'}},},
+    lualine_c = {'filename',
+                 '%{coc#status()}',
+    },
     lualine_x = {'encoding', 'fileformat', 'filetype'},
     lualine_y = {'progress'},
     lualine_z = {'location'}
