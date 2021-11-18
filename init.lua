@@ -14,7 +14,7 @@ g.loaded_ruby_provider = 0
 g.loaded_perl_provider = 0
 
 opt.makeprg = 'build'
-map('', '<F12>', '<cmd>make!<CR>', { noremap = true, silent = true })
+map('', '<F12>', '<cmd>make! | copen<CR>', { noremap = true, silent = true })
 map('', '<F9>', '<cmd>!run.bat<CR>', { noremap = true, silent = true })
 
 g.mapleader = " "
