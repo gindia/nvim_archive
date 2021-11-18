@@ -6,16 +6,16 @@
 local cmd = vim.cmd -- exec commands - cmd('cmd')
 -- local fn  = vim.fn  -- call functions- fn.bufnr()
 local g   = vim.g   -- global
-local opt = vim.opt -- to set optionst set sw=2
+-- local opt = vim.opt -- to set optionst set sw=2
 local map = vim.api.nvim_set_keymap
 
 g.loaded_python_provider = 0
 g.loaded_ruby_provider = 0
 g.loaded_perl_provider = 0
 
-opt.makeprg = 'build'
+-- opt.makeprg = 'build'
 map('', '<F12>', '<cmd>make! | copen<CR>', { noremap = true, silent = true })
-map('', '<F9>', '<cmd>!run.bat<CR>', { noremap = true, silent = true })
+-- map('', '<F9>', '<cmd>!run.bat<CR>', { noremap = true, silent = true })
 
 g.mapleader = " "
 map('', '<leader>w', '<C-w>', {noremap=true})
@@ -40,6 +40,8 @@ map('n', '<leader>k', "<cmd>m .-2<CR>==", {noremap=true})
 -- opts
 cmd("set mouse=a")
 
+cmd("set exrc")
+cmd("set secure")
 cmd("set termguicolors")
 cmd("set splitbelow")
 cmd("set splitright")
