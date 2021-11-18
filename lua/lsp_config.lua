@@ -2,8 +2,11 @@
 -- LSP Configs
 -- Omar M.Gindia 2021.
 -----------------------------------------------
-local lsp_config = require('lspconfig')
 
+-- servers added in the global environment (will be loaaded with default config).
+local servers = {'clangd', 'rust_analyzer'}
+
+local lsp_config = require('lspconfig')
 -- Use an on_attach function to only map the following keys
 -- after the language server attaches to the current buffer
 local on_attach = function(_, bufnr)
@@ -23,13 +26,13 @@ local on_attach = function(_, bufnr)
   buf_set_keymap('n', 'gr', '<cmd>Telescope lsp_references<CR>', opts)
   buf_set_keymap('n', '<space>qf', '<cmd>Telescope lsp_code_actions<CR>', opts)
   buf_set_keymap('n', '<space>ee', '<cmd>Telescope lsp_workspace_diagnostics<CR>', opts)
-  buf_set_keymap('n', '<space>rr', '<cmd>lua vim.lsp.buf.rename()<CR>', opts)
+  buf_set_keymap('n', '<space>r', '<cmd>lua vim.lsp.buf.rename()<CR>', opts)
   buf_set_keymap('n', '[e', '<cmd>lua vim.lsp.diagnostic.goto_prev()<CR>', opts)
   buf_set_keymap('n', ']e', '<cmd>lua vim.lsp.diagnostic.goto_next()<CR>', opts)
   vim.cmd [[ command! Format execute 'lua vim.lsp.buf.formatting()' ]]
 end
 
-local servers = {'clangd'}
+--- manual setup
 for _, lsp in ipairs(servers) do
     lsp_config[lsp].setup {
       on_attach = on_attach,
@@ -40,8 +43,25 @@ for _, lsp in ipairs(servers) do
     }
 end
 
-local sumneko_binary = "C:/Users/omerg/AppData/Local/nvim-data/lsp_servers/sumneko_lua/extension/server/bin/Windows/lua-language-server"
-local sumneko_root_path = "C:/Users/omerg/AppData/Local/nvim-data/lsp_servers/sumneko_lua/extension/server"
+-- local lsp_installer_servers = require('nvim-lsp-installer.servers')
+-- local lsp_installed_servers_names = require("nvim-lsp-installer.servers").get_available_server_names()
+-- for _, lsp_name in ipairs(lsp_installed_servers_names) do
+--   local server_available, requested_server = lsp_installer_servers.get_server(lsp_name)
+--   if server_available then
+--     requested_server:on_ready(function ()
+--         local opts = {}
+--         requested_server:setup(opts)
+--     end)
+--   end
+-- end
+local lsp_installer = require('nvim-lsp-installer')
+lsp_installer.on_server_ready(function (server) server:setup {} end)
+
+
+
+-- man stands for manual
+local sumneko_binary = "C:/Users/omerg/AppData/Local/nvim-data/lsp_servers_man/sumneko_lua/extension/server/bin/Windows/lua-language-server"
+local sumneko_root_path = "C:/Users/omerg/AppData/Local/nvim-data/lsp_servers_man/sumneko_lua/extension/server"
 
 -- Make runtime files discoverable to the server
 local runtime_path = vim.split(package.path, ';')
@@ -62,7 +82,7 @@ require('lspconfig').sumneko_lua.setup {
       },
       diagnostics = {
         -- Get the language server to recognize the `vim` global
-        globals = { 'vim' },
+        globals = { 'vim', 'use' },
       },
       workspace = {
         -- Make the server aware of Neovim runtime files
