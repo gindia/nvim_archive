@@ -3,12 +3,6 @@
 -- Omar M.Gindia 2021.
 -----------------------------------------------
 
--- servers added in the global environment (will be loaaded with default config).
-local servers = {'clangd', 'rust_analyzer'}
-
-local lsp_config = require('lspconfig')
--- Use an on_attach function to only map the following keys
--- after the language server attaches to the current buffer
 local on_attach = function(_, bufnr)
   local function buf_set_keymap(...) vim.api.nvim_buf_set_keymap(bufnr, ...) end
   local function buf_set_option(...) vim.api.nvim_buf_set_option(bufnr, ...) end
@@ -32,32 +26,16 @@ local on_attach = function(_, bufnr)
   vim.cmd [[ command! Format execute 'lua vim.lsp.buf.formatting()' ]]
 end
 
---- manual setup
-for _, lsp in ipairs(servers) do
-    lsp_config[lsp].setup {
+local lsp_installer = require('nvim-lsp-installer')
+lsp_installer.on_server_ready(function (server)
+  local opts = {
       on_attach = on_attach,
       flags = {
         debounce_text_changes = 150,
       },
-      ...
-    }
-end
-
--- local lsp_installer_servers = require('nvim-lsp-installer.servers')
--- local lsp_installed_servers_names = require("nvim-lsp-installer.servers").get_available_server_names()
--- for _, lsp_name in ipairs(lsp_installed_servers_names) do
---   local server_available, requested_server = lsp_installer_servers.get_server(lsp_name)
---   if server_available then
---     requested_server:on_ready(function ()
---         local opts = {}
---         requested_server:setup(opts)
---     end)
---   end
--- end
-local lsp_installer = require('nvim-lsp-installer')
-lsp_installer.on_server_ready(function (server) server:setup {} end)
-
-
+  }
+  server:setup (opts)
+end)
 
 -- man stands for manual
 local sumneko_binary = "C:/Users/omerg/AppData/Local/nvim-data/lsp_servers_man/sumneko_lua/extension/server/bin/Windows/lua-language-server"
@@ -111,8 +89,6 @@ vim.o.completeopt = 'menuone,noselect'
 cmp.setup {
   snippet = {
     expand = function(args)
-      -- You must install `vim-vsnip` if you use the following as-is.
-      -- vim.fn['vsnip#anonymous'](args.body)
       luasnip.lsp_expand(args.body)
     end
   },
