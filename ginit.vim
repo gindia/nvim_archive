@@ -7,7 +7,7 @@ if exists('g:GuiLoaded')
     GuiTabline 0
     GuiPopupmenu 0
     GuiLinespace 2
-    GuiFont! FiraCode\ NF:h10:luiPopupmenu 0
+    GuiFont! FiraCode\ NF:h13:luiPopupmenu 0
 endif
 
 if exists('g:fvim_loaded')

@@ -14,6 +14,9 @@ return require'packer'.startup( function()
 
     -- colorscheme
     use 'dikiaap/minimalist'
+    use 'jnurmine/Zenburn'
+    use 'chriskempson/base16-vim'
+
     -- icons
     use 'kyazdani42/nvim-web-devicons'
 
