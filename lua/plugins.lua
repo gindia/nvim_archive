@@ -30,10 +30,7 @@ return require'packer'.startup( function()
     use 'nvim-telescope/telescope.nvim'
 
     -- lsp
-    use {
-      'neovim/nvim-lspconfig',
-      'williamboman/nvim-lsp-installer',
-    }
+    use 'neovim/nvim-lspconfig'
 
     -- autocomplete
     use {

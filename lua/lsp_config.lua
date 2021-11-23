@@ -3,6 +3,18 @@
 -- Omar M.Gindia 2021.
 -----------------------------------------------
 
+-- a list of language servers to enable
+local servers = {
+  'clangd',
+  'rust_analyzer',
+  'jsonls',
+  'html',
+  'cssls',
+  'pyright',
+  'tsserver',
+  'hls',
+}
+
 local on_attach = function(_, bufnr)
   local function buf_set_keymap(...) vim.api.nvim_buf_set_keymap(bufnr, ...) end
   local function buf_set_option(...) vim.api.nvim_buf_set_option(bufnr, ...) end
@@ -26,16 +38,15 @@ local on_attach = function(_, bufnr)
   vim.cmd [[ command! Format execute 'lua vim.lsp.buf.formatting()' ]]
 end
 
-local lsp_installer = require('nvim-lsp-installer')
-lsp_installer.on_server_ready(function (server)
-  local opts = {
-      on_attach = on_attach,
-      flags = {
-        debounce_text_changes = 150,
-      },
+local lsp_config = require('lspconfig')
+for _, lsp in ipairs(servers) do
+  lsp_config[lsp].setup {
+    on_attach = on_attach,
+    flags = {
+      debounce_text_changes = 150,
+    }
   }
-  server:setup (opts)
-end)
+end
 
 -- man stands for manual
 local sumneko_binary = "C:/Users/omerg/AppData/Local/nvim-data/lsp_servers_man/sumneko_lua/extension/server/bin/Windows/lua-language-server"
@@ -46,7 +57,7 @@ local runtime_path = vim.split(package.path, ';')
 table.insert(runtime_path, 'lua/?.lua')
 table.insert(runtime_path, 'lua/?/init.lua')
 
-require('lspconfig').sumneko_lua.setup {
+lsp_config.sumneko_lua.setup {
   cmd = { sumneko_binary, '-E', sumneko_root_path .. '/main.lua' },
   on_attach = on_attach,
   --capabilities = capabilities,
