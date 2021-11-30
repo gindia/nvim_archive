@@ -16,9 +16,13 @@ return require'packer'.startup( function()
     use 'dikiaap/minimalist'
     use 'jnurmine/Zenburn'
     use 'chriskempson/base16-vim'
+    use 'tomasiser/vim-code-dark'
 
     -- icons
     use 'kyazdani42/nvim-web-devicons'
+
+    -- syntax
+    use 'sheerun/vim-polyglot'
 
     -- Treesitter
     use {

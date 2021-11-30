@@ -10,8 +10,7 @@ vim.g.loaded_python_provider = 0
 vim.g.loaded_ruby_provider = 0
 vim.g.loaded_perl_provider = 0
 
--- opt.makeprg = 'build'
-map('', '<F12>', '<C-w>w <cmd>term make<CR>', { noremap = true, silent = true })
+map('', '<F12>', '<C-w>w <cmd>term make<CR> <C-w>w', { noremap = true, silent = true })
 
 vim.g.mapleader = " "
 map('', '<leader>w', '<C-w>', {noremap=true})
@@ -68,13 +67,12 @@ cmd("set noshowmode")
 cmd("set updatetime=100")
 cmd("set shortmess+=c")
 
---cmd("set signcolumn=yes:1")
 cmd("set signcolumn=number")
 cmd("set number")
 
 require'plugins'
 
-cmd"colorscheme base16-ashes"
+cmd"colorscheme codedark"
 
 require'lsp_config'
 require'telescope_config'

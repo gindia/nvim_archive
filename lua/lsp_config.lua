@@ -7,11 +7,11 @@
 local servers = {
   'clangd',
   'rust_analyzer',
-  'jsonls',
-  'html',
-  'cssls',
+  -- 'jsonls',
+  -- 'html',
+  -- 'cssls',
   'pyright',
-  'tsserver',
+  -- 'tsserver',
   'hls',
 }
 
