@@ -10,7 +10,7 @@ vim.g.loaded_python_provider = 0
 vim.g.loaded_ruby_provider = 0
 vim.g.loaded_perl_provider = 0
 
-map('', '<F12>', '<C-w>w <cmd>term make<CR> <C-w>w', { noremap = true, silent = true })
+map('', '<F12>', '<C-w>w <cmd>term build<CR> <C-w>w', { noremap = true, silent = true })
 
 vim.g.mapleader = " "
 map('', '<leader>w', '<C-w>', {noremap=true})
@@ -18,6 +18,9 @@ map('', '<leader>w', '<C-w>', {noremap=true})
 cmd("set keywordprg=")
 map('', 'K', '<NOP>', {noremap=true})
 map('', '<S-Q>', '<NOP>', {noremap=true}) -- disable ex mode
+
+-- use C not CPlusPlus for header files
+cmd("let c_syntax_for_h=1")
 
 -- remove trailing whitespace
 cmd("autocmd BufWritePre * :silent! %s/\\s\\+$//e")
