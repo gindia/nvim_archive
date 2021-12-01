@@ -11,6 +11,7 @@ vim.g.loaded_ruby_provider = 0
 vim.g.loaded_perl_provider = 0
 
 map('', '<F12>', '<C-w>w <cmd>term build<CR> <C-w>w', { noremap = true, silent = true })
+map('', '<F9>', '<C-w>w <cmd>term run<CR> <C-w>w', { noremap = true, silent = true })
 
 vim.g.mapleader = " "
 map('', '<leader>w', '<C-w>', {noremap=true})
