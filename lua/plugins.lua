@@ -56,4 +56,7 @@ return require'packer'.startup( function()
     -- copilot
     use 'github/copilot.vim'
 
+    -- neoscroll for smooth scrolling
+    use 'karb94/neoscroll.nvim'
+
 end)

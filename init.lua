@@ -36,6 +36,10 @@ map('i', '?', '?<c-g>u', {noremap=true})
 map('n', '<leader>j', "<cmd>m .+1<CR>==", {noremap=true})
 map('n', '<leader>k', "<cmd>m .-2<CR>==", {noremap=true})
 
+-- disable numbers in terminal
+cmd('autocmd TermOpen * setlocal nonumber')
+cmd('autocmd TermOpen * setlocal nospell')
+
 -- opts
 cmd("set mouse=a")
 
@@ -79,12 +83,14 @@ require'plugins'
 cmd"colorscheme codedark"
 
 require'lsp_config'
+cmd('autocmd FileType c map <leader>h <cmd>ClangdSwitchSourceHeader<CR>')
+
 require'telescope_config'
 require'treesitter_config'
 
-cmd('autocmd FileType c map <leader>h <cmd>ClangdSwitchSourceHeader<CR>')
+-- copilot
 cmd('imap <silent><script><expr> <C-J> copilot#Accept("\\<CR>")')
 vim.g.copilot_no_tab_map = true
 
-cmd('autocmd TermOpen * setlocal nonumber')
-cmd('autocmd TermOpen * setlocal nospell')
+-- neoscoll
+require'neoscroll'.setup()
