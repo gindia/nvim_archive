@@ -16,6 +16,8 @@ map('', '<F9>', '<C-w>w <cmd>term run<CR> <C-w>w', { noremap = true, silent = tr
 vim.g.mapleader = " "
 map('', '<leader>w', '<C-w>', {noremap=true})
 
+vim.g.makeprg = 'build'
+
 cmd("set keywordprg=")
 map('', 'K', '<NOP>', {noremap=true})
 map('', '<S-Q>', '<NOP>', {noremap=true}) -- disable ex mode
