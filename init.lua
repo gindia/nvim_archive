@@ -10,11 +10,13 @@ vim.g.loaded_python_provider = 0
 vim.g.loaded_ruby_provider = 0
 vim.g.loaded_perl_provider = 0
 
-map('', '<F12>', '<C-w>w <cmd>term build<CR> <C-w>w', { noremap = true, silent = true })
+map('', '<F12>', '<cmd>wa<CR><C-w>w <cmd>term build<CR><C-w>w', { noremap = true, silent = true })
 map('', '<F9>', '<C-w>w <cmd>term run<CR> <C-w>w', { noremap = true, silent = true })
 
 vim.g.mapleader = " "
 map('', '<leader>w', '<C-w>', {noremap=true})
+
+map('', '<C-n>', '<cmd>Explore<CR>', { noremap = true, silent = true })
 
 vim.g.makeprg = 'build'
 
@@ -67,10 +69,14 @@ cmd("set hidden")
 cmd("set noswapfile")
 cmd("set nobackup")
 cmd("set nowritebackup")
-cmd("set colorcolumn=100")
-cmd("set cursorline")
 cmd("set nospell")
 cmd("set incsearch")
+
+cmd("set colorcolumn=100")
+
+cmd("set cursorline")
+cmd("set cursorcolumn")
+
 
 cmd("set autowriteall");
 cmd("set noshowmode")
@@ -83,6 +89,9 @@ cmd("set number")
 require'plugins'
 
 cmd"colorscheme codedark"
+-- cmd"set background=dark"
+-- cmd"let g:gruvbox_contrast_dark='hard'"
+-- cmd"colorscheme gruvbox"
 
 require'lsp_config'
 cmd('autocmd FileType c map <leader>h <cmd>ClangdSwitchSourceHeader<CR>')

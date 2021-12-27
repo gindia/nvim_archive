@@ -17,6 +17,7 @@ return require'packer'.startup( function()
     use 'jnurmine/Zenburn'
     use 'chriskempson/base16-vim'
     use 'tomasiser/vim-code-dark'
+    use 'morhetz/gruvbox'
 
     -- icons
     use 'kyazdani42/nvim-web-devicons'
@@ -38,10 +39,17 @@ return require'packer'.startup( function()
 
     -- autocomplete
     use {
+        'saecki/crates.nvim',
+        event = { "BufRead Cargo.toml" },
+        requires = { { 'nvim-lua/plenary.nvim' } },
+        config = function()
+            require('crates').setup()
+        end,
+    }
+    use {
       'hrsh7th/nvim-cmp',
       'hrsh7th/cmp-nvim-lsp',
       'hrsh7th/cmp-nvim-lua',
-      'saecki/crates.nvim',
       'hrsh7th/cmp-buffer',
       'hrsh7th/cmp-path',
       'hrsh7th/cmp-cmdline',
@@ -58,5 +66,4 @@ return require'packer'.startup( function()
 
     -- neoscroll for smooth scrolling
     use 'karb94/neoscroll.nvim'
-
 end)
