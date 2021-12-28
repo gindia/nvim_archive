@@ -2,7 +2,7 @@
 !.gitignore
 
 !ginit.vim
-!init.vim
+!init.lua
 !lua/
 !lua/*
 

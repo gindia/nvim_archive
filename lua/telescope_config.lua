@@ -17,5 +17,9 @@ require('telescope').setup{
         },
     }
 }
+--require('telescope').load_extension('fzf')
 
-require('telescope').load_extension('fzf')
+local opt = { noremap=true, silent=true }
+vim.api.nvim_set_keymap('n', '<leader>ff', '<cmd>lua require"telescope.builtin".find_files()<CR>', opt)
+vim.api.nvim_set_keymap('n', '<leader>fg', '<cmd>lua require"telescope.builtin".live_grep()<CR>', opt)
+vim.api.nvim_set_keymap('n', '<leader>tt', '<cmd>Telescope builtin<CR>', opt)

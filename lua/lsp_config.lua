@@ -1,7 +1,22 @@
-local nvim_lsp = require('lspconfig')
+-----------------------------------------------
+-- LSP Configs
+-- Omar M.Gindia 2021.
+-----------------------------------------------
 
--- Use an on_attach function to only map the following keys
--- after the language server attaches to the current buffer
+-- a list of language servers to enable
+local servers = {
+  'clangd',
+  'rust_analyzer',
+  -- 'jsonls',
+  -- 'html',
+  -- 'cssls',
+  'pyright',
+  'tsserver',
+  -- 'hls',
+  'gopls',
+  'zls',
+}
+
 local on_attach = function(_, bufnr)
   local function buf_set_keymap(...) vim.api.nvim_buf_set_keymap(bufnr, ...) end
   local function buf_set_option(...) vim.api.nvim_buf_set_option(bufnr, ...) end
@@ -13,37 +28,117 @@ local on_attach = function(_, bufnr)
   local opts = { noremap=true, silent=true }
 
   -- See `:help vim.lsp.*` for documentation on any of the below functions
-  buf_set_keymap('n', 'gD', '<cmd>lua vim.lsp.buf.declaration()<CR>', opts)
   buf_set_keymap('n', 'K', '<cmd>lua vim.lsp.buf.hover()<CR>', opts)
-  buf_set_keymap('n', '<C-k>', '<cmd>lua vim.lsp.buf.signature_help()<CR>', opts)
+  buf_set_keymap('n', 'gd', '<cmd>Telescope lsp_definitions<CR>', opts)
+  buf_set_keymap('n', 'gi', '<cmd>Telescope lsp_implementations<CR>', opts)
+  buf_set_keymap('n', 'gr', '<cmd>Telescope lsp_references<CR>', opts)
+  buf_set_keymap('n', '<space>qf', '<cmd>Telescope lsp_code_actions<CR>', opts)
+  buf_set_keymap('n', '<space>ee', '<cmd>Telescope diagnostics<CR>', opts)
   buf_set_keymap('n', '<space>r', '<cmd>lua vim.lsp.buf.rename()<CR>', opts)
-  buf_set_keymap('n', '[e', '<cmd>lua vim.lsp.diagnostic.goto_prev()<CR>', opts)
-  buf_set_keymap('n', ']e', '<cmd>lua vim.lsp.diagnostic.goto_next()<CR>', opts)
-  buf_set_keymap('n', '<F2>', '<cmd>lua vim.lsp.buf.formatting()<CR>', opts)
 
+  buf_set_keymap('n', '[e', '<cmd>lua vim.diagnostic.goto_prev()<CR>', opts)
+  buf_set_keymap('n', ']e', '<cmd>lua vim.diagnostic.goto_next()<CR>', opts)
+
+  vim.cmd [[ command! Format execute 'lua vim.lsp.buf.formatting()' ]]
 end
 
-require'lspinstall'.setup()
-
-local servers = require'lspinstall'.installed_servers()
--- local servers = { 'clangd', 'rust_analyzer', 'tsserver', 'vimls', 'pyright', 'bashls', 'zls'}
-
+local lsp_config = require('lspconfig')
 for _, lsp in ipairs(servers) do
-  nvim_lsp[lsp].setup {
+  lsp_config[lsp].setup {
     on_attach = on_attach,
     flags = {
       debounce_text_changes = 150,
-    },
-    ...
+    }
   }
 end
 
-nvim_lsp.dartls.setup {
+-- man stands for manual
+local sumneko_binary = "C:/Users/omerg/AppData/Local/nvim-data/lsp_servers_man/sumneko_lua/extension/server/bin/Windows/lua-language-server"
+local sumneko_root_path = "C:/Users/omerg/AppData/Local/nvim-data/lsp_servers_man/sumneko_lua/extension/server"
+
+-- Make runtime files discoverable to the server
+local runtime_path = vim.split(package.path, ';')
+table.insert(runtime_path, 'lua/?.lua')
+table.insert(runtime_path, 'lua/?/init.lua')
+
+lsp_config.sumneko_lua.setup {
+  cmd = { sumneko_binary, '-E', sumneko_root_path .. '/main.lua' },
   on_attach = on_attach,
-  flags = {
-    debounce_text_changes = 150,
+  --capabilities = capabilities,
+  settings = {
+    Lua = {
+      runtime = {
+        -- Tell the language server which version of Lua you're using (most likely LuaJIT in the case of Neovim)
+        version = 'LuaJIT',
+        -- Setup your lua path
+        path = runtime_path,
+      },
+      diagnostics = {
+        -- Get the language server to recognize the `vim` global
+        globals = { 'vim', 'use' },
+      },
+      workspace = {
+        -- Make the server aware of Neovim runtime files
+        library = vim.api.nvim_get_runtime_file('', true),
+      },
+      -- Do not send telemetry data containing a randomized but unique identifier
+      telemetry = {
+        enable = false,
+      },
+    },
   },
-  ...
 }
 
-return nvim_lsp
+-- disable diagnostics
+vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
+    vim.lsp.diagnostic.on_publish_diagnostics, {
+       virtual_text = false,
+       signs = false,
+       update_in_insert = false,
+       underline = false,
+    }
+)
+
+--------------------------------------------------------------------------------------------------
+--- Auto complete
+--------------------------------------------------------------------------------------------------
+local cmp = require('cmp')
+
+local luasnip = require 'luasnip'
+
+-- require 'crates'
+
+-- Set completeopt to have a better completion experience
+vim.o.completeopt = 'menuone,noselect'
+
+cmp.setup {
+  snippet = {
+    expand = function(args)
+      luasnip.lsp_expand(args.body)
+    end
+  },
+
+  -- You can set mapping if you want.
+  mapping = {
+    ['<S-Tab>'] = cmp.mapping.select_prev_item(),
+    ['<Tab>'] = cmp.mapping.select_next_item(),
+    ['<C-d>'] = cmp.mapping.scroll_docs(-4),
+    ['<C-f>'] = cmp.mapping.scroll_docs(4),
+    ['<C-Space>'] = cmp.mapping.complete(),
+    ['<C-e>'] = cmp.mapping.close(),
+    ['<CR>'] = cmp.mapping.confirm({
+      behavior = cmp.ConfirmBehavior.Insert,
+      select = true,
+    }),
+  },
+
+  -- You should specify your *installed* sources.
+  sources = {
+    { name = 'nvim_lsp' },
+    { name = 'nvim_lua' },
+    { name = 'luasnip'  },
+    { name = 'buffer' },
+    { name = 'path' },
+    { name = 'crates' },
+  },
+}
