@@ -66,4 +66,7 @@ return require'packer'.startup( function()
 
     -- neoscroll for smooth scrolling
     use 'karb94/neoscroll.nvim'
+
+    -- where am I !
+    use 'romgrk/nvim-treesitter-context'
 end)
