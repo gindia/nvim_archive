@@ -5,7 +5,7 @@
 
 -- a list of language servers to enable
 local servers = {
-  'clangd',
+  -- 'clangd',
   'rust_analyzer',
   -- 'jsonls',
   -- 'html',
@@ -90,14 +90,14 @@ lsp_config.sumneko_lua.setup {
 }
 
 -- disable diagnostics
-vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
-    vim.lsp.diagnostic.on_publish_diagnostics, {
-       virtual_text = false,
-       signs = false,
-       update_in_insert = false,
-       underline = false,
-    }
-)
+-- vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
+--     vim.lsp.diagnostic.on_publish_diagnostics, {
+--        virtual_text = false,
+--        signs = false,
+--        update_in_insert = false,
+--        underline = false,
+--     }
+-- )
 
 --------------------------------------------------------------------------------------------------
 --- Auto complete

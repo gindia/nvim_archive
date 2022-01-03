@@ -60,8 +60,8 @@ cmd("set scrollback=100000")
 cmd("set nowrap")
 cmd("set expandtab")
 cmd("set smarttab")
-cmd("set tabstop=2 shiftwidth=2")
-cmd("set softtabstop=2")
+cmd("set tabstop=4 shiftwidth=4")
+cmd("set softtabstop=4")
 cmd("set autoindent")
 cmd("set smartindent")
 cmd("set shiftround")
@@ -89,9 +89,6 @@ cmd("set number")
 require'plugins'
 
 cmd"colorscheme codedark"
--- cmd"set background=dark"
--- cmd"let g:gruvbox_contrast_dark='hard'"
--- cmd"colorscheme gruvbox"
 
 require'lsp_config'
 cmd('autocmd FileType c map <leader>h <cmd>ClangdSwitchSourceHeader<CR>')
@@ -109,28 +106,16 @@ require'neoscroll'.setup()
 
 --- --- ---
 require'treesitter-context'.setup{
-    enable = true, -- Enable this plugin (Can be enabled/disabled later via commands)
-    throttle = true, -- Throttles plugin updates (may improve performance)
-    max_lines = 1, -- How many lines the window should span. Values <= 0 mean no limit.
-    patterns = { -- Match patterns for TS nodes. These get wrapped to match at word boundaries.
-        -- For all filetypes
-        -- Note that setting an entry here replaces all other patterns for this entry.
-        -- By setting the 'default' entry below, you can control which nodes you want to
-        -- appear in the context window.
+    enable = true,
+    throttle = true,
+    max_lines = 1,
+    patterns = {
         default = {
             'class',
+            'struct',
+            'enum',
             'function',
             'method',
-            -- 'for', -- These won't appear in the context
-            -- 'while',
-            -- 'if',
-            -- 'switch',
-            -- 'case',
         },
-        -- Example for a specific filetype.
-        -- If a pattern is missing, *open a PR* so everyone can benefit.
-        --   rust = {
-        --       'impl_item',
-        --   },
     },
 }
