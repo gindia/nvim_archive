@@ -1,9 +1,10 @@
 require('telescope').setup{
     defaults = {
         file_sorter    = require('telescope.sorters').get_fzy_sorter,
-        prompt_prefix  = '->',
+        prompt_prefix  = '>>',
         color_devicons = true,
 
+        preview = false,
         file_previewer   = require'telescope.previewers'.vim_buffer_cat.new,
         grep_previewer   = require'telescope.previewers'.vim_buffer_vimgrep.new,
         qflist_previewer = require'telescope.previewers'.vim_buffer_qflist.new,
@@ -17,7 +18,10 @@ require('telescope').setup{
         },
     }
 }
---require('telescope').load_extension('fzf')
+
+-- require('telescope').load_extension('fzf')
+
+
 
 local opt = { noremap=true, silent=true }
 vim.api.nvim_set_keymap('n', '<leader>ff', '<cmd>lua require"telescope.builtin".find_files()<CR>', opt)

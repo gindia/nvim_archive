@@ -3,7 +3,6 @@
 -- Omar M.Gindia 2021.
 -----------------------------------------------
 return require'packer'.startup( function()
-    -- Packer can manage itself as an optional plugin
     use 'wbthomason/packer.nvim'
 
     -- debs
@@ -13,14 +12,8 @@ return require'packer'.startup( function()
     }
 
     -- colorscheme
-    use 'dikiaap/minimalist'
-    use 'jnurmine/Zenburn'
-    use 'chriskempson/base16-vim'
     use 'tomasiser/vim-code-dark'
-    use 'morhetz/gruvbox'
-
-    -- icons
-    use 'kyazdani42/nvim-web-devicons'
+    use {"ellisonleao/gruvbox.nvim", requires = {"rktjmp/lush.nvim"}}
 
     -- syntax
     use 'sheerun/vim-polyglot'
@@ -32,7 +25,7 @@ return require'packer'.startup( function()
     }
 
     -- telescope
-    use 'nvim-telescope/telescope.nvim'
+     use 'nvim-telescope/telescope.nvim'
 
     -- lsp
     use 'neovim/nvim-lspconfig'
@@ -69,4 +62,5 @@ return require'packer'.startup( function()
 
     -- where am I !
     use 'romgrk/nvim-treesitter-context'
+
 end)

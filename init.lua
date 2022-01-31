@@ -1,6 +1,7 @@
 -----------------------------------------------
 -- V0.6 Neovim configs for windog 10.
 -- Omar M.Gindia 2021.
+-- TODO (gindia):
 -----------------------------------------------
 
 local cmd = vim.cmd -- exec commands - cmd('cmd')
@@ -11,6 +12,7 @@ vim.g.loaded_ruby_provider = 0
 vim.g.loaded_perl_provider = 0
 
 map('', '<F12>', '<cmd>wa<CR><C-w>w <cmd>term build<CR><C-w>w', { noremap = true, silent = true })
+map('', '<F10>', '<CMD>wa<CR><CMD>tabnew<CR><CMD>term build<CR>', { noremap = true, silent = true })
 map('', '<F9>', '<C-w>w <cmd>term run<CR> <C-w>w', { noremap = true, silent = true })
 
 vim.g.mapleader = " "
@@ -77,7 +79,6 @@ cmd("set colorcolumn=100")
 cmd("set cursorline")
 cmd("set cursorcolumn")
 
-
 cmd("set autowriteall");
 cmd("set noshowmode")
 cmd("set updatetime=100")
@@ -86,9 +87,24 @@ cmd("set shortmess+=c")
 cmd("set signcolumn=number")
 cmd("set number")
 
+vim.cmd([[set wildmenu]])
+vim.cmd([[set wildmode=list:longest]])
+vim.cmd([[set wildignore=*.docx,*.jpg,*.png,*.gif,*.pdf,*.pyc,*.exe,*.flv,*.img,*.xlsx]])
+
+vim.cmd([[set statusline=]])
+vim.cmd([[set statusline+=\ %F\ %M\ %Y\ %R]])
+vim.cmd([[set statusline+=%=]])
+vim.cmd([[set statusline+=\ ascii:\ %b\ hex:\ 0x%B\ row:\ %l\ col:\ %c\ percent:\ %p%%]])
+vim.cmd([[set laststatus=2]])
+
+
 require'plugins'
 
-cmd"colorscheme codedark"
+-- vim.cmd([[colorscheme codedark]])
+vim.g.gruvbox_italic = false
+vim.o.background = "dark"
+vim.cmd([[colorscheme gruvbox]])
+
 
 require'lsp_config'
 cmd('autocmd FileType c map <leader>h <cmd>ClangdSwitchSourceHeader<CR>')
