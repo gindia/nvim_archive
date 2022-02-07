@@ -8,12 +8,13 @@ local servers = {
   'clangd',
   'rust_analyzer',
   'csharp_ls',
+  'jdtls',
+  'lemminx',
   -- 'jsonls',
   -- 'html',
   -- 'cssls',
   'pyright',
   'tsserver',
-  -- 'hls',
   'gopls',
   'zls',
 }
@@ -89,6 +90,8 @@ lsp_config.sumneko_lua.setup {
     },
   },
 }
+
+
 
 -- disable diagnostics
 -- vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
