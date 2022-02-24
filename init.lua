@@ -13,8 +13,8 @@ vim.g.loaded_perl_provider = 0
 
 
 map('', '<F12>', '<cmd>wa<CR><C-w>w <cmd>term build -fast<CR><C-w>w', { noremap = true, silent = true })
-map('', '<F10>', '<CMD>wa<CR><CMD>tabnew<CR><CMD>term build -fast<CR>', { noremap = true, silent = true })
-map('', '<F9>', '<C-w>w <cmd>term run<CR> <C-w>w', { noremap = true, silent = true })
+map('', '<F10>', '<cmd>wa<CR><C-w>w <cmd>term build -test<CR><C-w>w', { noremap = true, silent = true })
+map('', '<F9>', '<C-w>w <cmd>term build -run<CR> <C-w>w', { noremap = true, silent = true })
 
 vim.g.mapleader = " "
 map('', '<leader>w', '<C-w>', {noremap=true})
