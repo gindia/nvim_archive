@@ -102,9 +102,20 @@ vim.cmd([[set laststatus=2]])
 require'plugins'
 
 -- vim.cmd([[colorscheme codedark]])
+
+vim.o.background = 'dark'
+vim.g.gruvbox_bold = true
 vim.g.gruvbox_italic = false
-vim.o.background = "dark"
-vim.cmd([[colorscheme gruvbox]])
+vim.g.gruvbox_invert_selection = false
+vim.g.gruvbox_contrast_dark = 'medium'
+vim.g.gruvbox_italicize_comments= false
+-- vim.g.gruvbox_transparent_bg = true
+
+vim.cmd('colorscheme gruvbox')
+
+--vim.g.gruvbox_italic = false
+--vim.o.background = "dark"
+--vim.cmd([[colorscheme gruvbox]])
 
 
 require'lsp_config'
