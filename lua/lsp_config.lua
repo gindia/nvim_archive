@@ -43,6 +43,7 @@ local on_attach = function(_, bufnr)
   buf_set_keymap('n', ']e', '<cmd>lua vim.diagnostic.goto_next()<CR>', opts)
 
   vim.cmd [[ command! Format execute 'lua vim.lsp.buf.formatting()' ]]
+  vim.cmd [[ command! Cleanc :silent %s/\r//g ]]
 end
 
 local lsp_config = require('lspconfig')
@@ -93,6 +94,15 @@ lsp_config.sumneko_lua.setup {
 }
 
 
+--disable diagnostics
+vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
+    vim.lsp.diagnostic.on_publish_diagnostics, {
+       virtual_text = false,
+       --signs = false,
+       --update_in_insert = false,
+       --underline = false,
+    }
+)
 
 -- disable diagnostics
 -- vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
