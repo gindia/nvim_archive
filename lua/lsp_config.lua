@@ -7,7 +7,9 @@
 local servers = {
   'clangd',
   'rust_analyzer',
-  'csharp_ls',
+  'cmake',
+  'taplo',
+  -- 'csharp_ls',
   -- 'jsonls',
   -- 'html',
   -- 'cssls',
@@ -53,9 +55,8 @@ for _, lsp in ipairs(servers) do
   }
 end
 
--- man stands for manual
-local sumneko_binary = "C:/Users/omerg/AppData/Local/nvim-data/lsp_servers_man/sumneko_lua/extension/server/bin/Windows/lua-language-server"
-local sumneko_root_path = "C:/Users/omerg/AppData/Local/nvim-data/lsp_servers_man/sumneko_lua/extension/server"
+local sumneko_binary = "/home/omar/.local/lua-language-server/bin/lua-language-server"
+local sumneko_root_path = "/home/omar/.local/lua-language-server"
 
 -- Make runtime files discoverable to the server
 local runtime_path = vim.split(package.path, ';')
@@ -89,6 +90,11 @@ lsp_config.sumneko_lua.setup {
     },
   },
 }
+
+
+-- java
+lsp_config.jdtls.setup{}
+
 
 -- disable diagnostics
 -- vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(

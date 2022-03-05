@@ -11,9 +11,8 @@ vim.g.loaded_python_provider = 0
 vim.g.loaded_ruby_provider = 0
 vim.g.loaded_perl_provider = 0
 
-map('', '<F12>', '<cmd>wa<CR><C-w>w <cmd>term build<CR><C-w>w', { noremap = true, silent = true })
-map('', '<F10>', '<CMD>wa<CR><CMD>tabnew<CR><CMD>term build<CR>', { noremap = true, silent = true })
-map('', '<F9>', '<C-w>w <cmd>term run<CR> <C-w>w', { noremap = true, silent = true })
+map('', '<F12>', '<cmd>wa<CR><C-w>w <cmd>term make<CR><C-w>w', { noremap = true, silent = true })
+map('', '<F11>', '<cmd>wa<cr><C-w>w <cmd>term make run<CR> <C-w>w', { noremap = true, silent = true })
 
 vim.g.mapleader = " "
 map('', '<leader>w', '<C-w>', {noremap=true})

@@ -32,14 +32,6 @@ return require'packer'.startup( function()
 
     -- autocomplete
     use {
-        'saecki/crates.nvim',
-        event = { "BufRead Cargo.toml" },
-        requires = { { 'nvim-lua/plenary.nvim' } },
-        config = function()
-            require('crates').setup()
-        end,
-    }
-    use {
       'hrsh7th/nvim-cmp',
       'hrsh7th/cmp-nvim-lsp',
       'hrsh7th/cmp-nvim-lua',
@@ -51,6 +43,14 @@ return require'packer'.startup( function()
       'saadparwaiz1/cmp_luasnip',
     }
 
+    use {
+        'saecki/crates.nvim',
+        event = { "BufRead Cargo.toml" },
+        requires = { { 'nvim-lua/plenary.nvim' } },
+        config = function()
+            require('crates').setup()
+        end,
+    }
     -- git
     use 'tpope/vim-fugitive'
 
