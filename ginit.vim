@@ -7,13 +7,13 @@ if exists('g:GuiLoaded')
     GuiTabline 0
     GuiPopupmenu 0
     GuiLinespace 2
-    GuiFont! FiraCode\ NF:h13:luiPopupmenu 0
+    GuiFont! Consolas\ NF:h10:luiPopupmenu 0
 endif
 
 if exists('g:fvim_loaded')
   set termguicolors
   "colorscheme gruvbox8_hard
-  set guifont=FiraCode\ NF:h10
+  set guifont=Consolas\ NF:h10
   " Cursor tweaks
   FVimCursorSmoothMove v:true
   FVimCursorSmoothBlink v:true
