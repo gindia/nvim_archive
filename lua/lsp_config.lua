@@ -5,19 +5,19 @@
 
 -- a list of language servers to enable
 local servers = {
-  'clangd',
+  -- 'clangd',
   'rust_analyzer',
-  'csharp_ls',
-  'jdtls',
-  'lemminx',
-  'cmake',
+  -- 'csharp_ls',
+  -- 'jdtls',
+  -- 'lemminx',
+  -- 'cmake',
   -- 'jsonls',
   -- 'html',
   -- 'cssls',
-  'pyright',
-  'tsserver',
-  'gopls',
-  'zls',
+  -- 'pyright',
+  -- 'tsserver',
+  -- 'gopls',
+  -- 'zls',
 }
 
 local on_attach = function(_, bufnr)
