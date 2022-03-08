@@ -4,7 +4,7 @@ require('telescope').setup{
         prompt_prefix  = '>>',
         color_devicons = true,
 
-        preview = false,
+        -- preview = true,
         file_previewer   = require'telescope.previewers'.vim_buffer_cat.new,
         grep_previewer   = require'telescope.previewers'.vim_buffer_vimgrep.new,
         qflist_previewer = require'telescope.previewers'.vim_buffer_qflist.new,
@@ -20,7 +20,6 @@ require('telescope').setup{
 }
 
 -- require('telescope').load_extension('fzf')
-
 
 
 local opt = { noremap=true, silent=true }
