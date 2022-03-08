@@ -90,7 +90,8 @@ cmd("set signcolumn=number")
 cmd("set number")
 
 vim.cmd([[set wildmenu]])
-vim.cmd([[set wildmode=list:longest]])
+-- vim.cmd([[set wildmode=list:lastused]])
+vim.cmd([[set wildmode=full]])
 vim.cmd([[set wildignore=*.docx,*.jpg,*.png,*.gif,*.pdf,*.pyc,*.exe,*.flv,*.img,*.xlsx]])
 
 vim.cmd([[set statusline=]])

@@ -57,8 +57,8 @@ for _, lsp in ipairs(servers) do
 end
 
 -- man stands for manual
-local sumneko_binary = "C:/Users/omerg/AppData/Local/nvim-data/lsp_servers_man/sumneko_lua/extension/server/bin/Windows/lua-language-server"
-local sumneko_root_path = "C:/Users/omerg/AppData/Local/nvim-data/lsp_servers_man/sumneko_lua/extension/server"
+local sumneko_binary = "C:\\Users\\omerg\\lua_lsp\\lua-language-server-2.6.6-win32-x64\\bin\\lua-language-server"
+local sumneko_root_path = "C:\\Users\\omerg\\lua_lsp\\lua-language-server-2.6.6-win32-x64"
 
 -- Make runtime files discoverable to the server
 local runtime_path = vim.split(package.path, ';')
