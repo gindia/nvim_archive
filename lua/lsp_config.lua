@@ -6,7 +6,7 @@
 -- a list of language servers to enable
 local servers = {
   -- 'clangd',
-  'rust_analyzer',
+  -- 'rust_analyzer',
   -- 'csharp_ls',
   -- 'jdtls',
   -- 'lemminx',

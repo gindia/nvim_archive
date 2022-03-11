@@ -12,9 +12,9 @@ vim.g.loaded_ruby_provider = 0
 vim.g.loaded_perl_provider = 0
 
 
-map('', '<F12>', '<cmd>wa<CR><C-w>w <cmd>term build -fast<CR><C-w>w', { noremap = true, silent = true })
-map('', '<F10>', '<cmd>wa<CR><C-w>w <cmd>term build -full<CR><C-w>w', { noremap = true, silent = true })
-map('', '<F9>', '<cmd>wa<CR><C-w>w <cmd>term build -run<CR> <C-w>w', { noremap = true, silent = true })
+map('', '<F12>', '<cmd>wa<CR><C-w>w <cmd>term build fast<CR><C-w>w', { noremap = true, silent = true })
+map('', '<F10>', '<cmd>wa<CR><C-w>w <cmd>term build full<CR><C-w>w', { noremap = true, silent = true })
+map('', '<F9>', '<cmd>wa<CR><C-w>w <cmd>term build run<CR> <C-w>w', { noremap = true, silent = true })
 map('', '<F2>', '<cmd>Cleanc<cr><C-o>', { noremap = true, silent = true })
 
 vim.g.mapleader = " "
@@ -113,7 +113,7 @@ vim.g.gruvbox_contrast_dark = 'medium'
 vim.g.gruvbox_italicize_comments= false
 -- vim.g.gruvbox_transparent_bg = true
 
-vim.cmd('colorscheme gruvbox')
+vim.cmd([[colorscheme gruvbox]])
 
 --vim.g.gruvbox_italic = false
 --vim.o.background = "dark"
