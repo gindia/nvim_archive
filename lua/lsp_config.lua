@@ -5,7 +5,7 @@
 
 -- a list of language servers to enable
 local servers = {
-  -- 'clangd',
+  'clangd',
   -- 'rust_analyzer',
   -- 'csharp_ls',
   -- 'jdtls',
@@ -31,7 +31,7 @@ local on_attach = function(_, bufnr)
   local opts = { noremap=true, silent=true }
 
   -- See `:help vim.lsp.*` for documentation on any of the below functions
-  buf_set_keymap('n', 'K', '<cmd>lua vim.lsp.buf.hover()<CR>', opts)
+  --buf_set_keymap('n', 'K', '<cmd>lua vim.lsp.buf.hover()<CR>', opts)
   buf_set_keymap('n', 'gd', '<cmd>Telescope lsp_definitions<CR>', opts)
   buf_set_keymap('n', 'gi', '<cmd>Telescope lsp_implementations<CR>', opts)
   buf_set_keymap('n', 'gr', '<cmd>Telescope lsp_references<CR>', opts)
@@ -98,9 +98,9 @@ lsp_config.sumneko_lua.setup {
 vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
     vim.lsp.diagnostic.on_publish_diagnostics, {
        virtual_text = false,
-       --signs = false,
-       --update_in_insert = false,
-       --underline = false,
+       signs = false,
+       update_in_insert = false,
+       underline = false,
     }
 )
 

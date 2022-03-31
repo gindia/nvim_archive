@@ -25,5 +25,5 @@ require('telescope').setup{
 local opt = { noremap=true, silent=true }
 vim.api.nvim_set_keymap('n', '<leader>ff', '<cmd>lua require"telescope.builtin".find_files()<CR>', opt)
 vim.api.nvim_set_keymap('n', '<leader>fg', '<cmd>lua require"telescope.builtin".live_grep()<CR>', opt)
-vim.api.nvim_set_keymap('n', 'gd', '<cmd>lua require"telescope.builtin".grep_string()<CR>', opt)
+vim.api.nvim_set_keymap('n', '<leader>fw', '<cmd>lua require"telescope.builtin".grep_string()<CR>', opt)
 vim.api.nvim_set_keymap('n', '<leader>tt', '<cmd>Telescope builtin<CR>', opt)

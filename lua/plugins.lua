@@ -63,4 +63,7 @@ return require'packer'.startup( function()
     -- where am I !
     use 'romgrk/nvim-treesitter-context'
 
+    --
+    use 'voldikss/vim-floaterm'
+
 end)
