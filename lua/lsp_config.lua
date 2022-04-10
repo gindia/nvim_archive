@@ -6,7 +6,7 @@
 -- a list of language servers to enable
 local servers = {
   'clangd',
-  -- 'rust_analyzer',
+  'rust_analyzer',
   -- 'csharp_ls',
   -- 'jdtls',
   -- 'lemminx',
@@ -31,7 +31,7 @@ local on_attach = function(_, bufnr)
   local opts = { noremap=true, silent=true }
 
   -- See `:help vim.lsp.*` for documentation on any of the below functions
-  --buf_set_keymap('n', 'K', '<cmd>lua vim.lsp.buf.hover()<CR>', opts)
+  buf_set_keymap('n', 'K', '<cmd>lua vim.lsp.buf.hover()<CR>', opts)
   buf_set_keymap('n', 'gd', '<cmd>Telescope lsp_definitions<CR>', opts)
   buf_set_keymap('n', 'gi', '<cmd>Telescope lsp_implementations<CR>', opts)
   buf_set_keymap('n', 'gr', '<cmd>Telescope lsp_references<CR>', opts)
@@ -46,14 +46,17 @@ local on_attach = function(_, bufnr)
   vim.cmd [[ command! Cleanc :silent %s/\r//g ]]
 end
 
-local lsp_config = require('lspconfig')
+local lsp_config = require'lspconfig'
+
 for _, lsp in ipairs(servers) do
   lsp_config[lsp].setup {
     on_attach = on_attach,
-    flags = {
-      debounce_text_changes = 150,
-    }
+    -- flags = {
+      -- debounce_text_changes = 150,
+    -- }
   }
+
+   -- coq[lsp].setup(coq.lsp_ensure_capabilities(...))
 end
 
 -- man stands for manual
@@ -118,20 +121,20 @@ vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
 --- Auto complete
 --------------------------------------------------------------------------------------------------
 local cmp = require('cmp')
-
-local luasnip = require 'luasnip'
-
--- require 'crates'
-
+--
+-- local luasnip = require 'luasnip'
+--
+-- -- require 'crates'
+--
 -- Set completeopt to have a better completion experience
 vim.o.completeopt = 'menuone,noselect'
 
 cmp.setup {
-  snippet = {
-    expand = function(args)
-      luasnip.lsp_expand(args.body)
-    end
-  },
+  -- snippet = {
+  --   expand = function(args)
+  --     luasnip.lsp_expand(args.body)
+  --   end
+  -- },
 
   -- You can set mapping if you want.
   mapping = {
@@ -150,10 +153,10 @@ cmp.setup {
   -- You should specify your *installed* sources.
   sources = {
     { name = 'nvim_lsp' },
-    { name = 'nvim_lua' },
-    { name = 'luasnip'  },
-    { name = 'buffer' },
-    { name = 'path' },
-    { name = 'crates' },
+    -- { name = 'nvim_lua' },
+    -- { name = 'luasnip'  },
+    -- { name = 'buffer' },
+    -- { name = 'path' },
+    -- { name = 'crates' },
   },
 }

@@ -25,45 +25,40 @@ return require'packer'.startup( function()
     }
 
     -- telescope
-     use 'nvim-telescope/telescope.nvim'
+    use 'nvim-telescope/telescope.nvim'
 
     -- lsp
     use 'neovim/nvim-lspconfig'
 
+    -- debugger
+    use { "rcarriga/nvim-dap-ui", requires = {"mfussenegger/nvim-dap"} }
+
+
     -- autocomplete
-    use {
-        'saecki/crates.nvim',
-        event = { "BufRead Cargo.toml" },
-        requires = { { 'nvim-lua/plenary.nvim' } },
-        config = function()
-            require('crates').setup()
-        end,
-    }
+    -- use {
+    --     'saecki/crates.nvim',
+    --     event = { "BufRead Cargo.toml" },
+    --     requires = { { 'nvim-lua/plenary.nvim' } },
+    --     config = function()
+    --         require('crates').setup()
+    --     end,
+    -- }
     use {
       'hrsh7th/nvim-cmp',
       'hrsh7th/cmp-nvim-lsp',
-      'hrsh7th/cmp-nvim-lua',
-      'hrsh7th/cmp-buffer',
-      'hrsh7th/cmp-path',
-      'hrsh7th/cmp-cmdline',
-      -- snipets
-      'L3MON4D3/LuaSnip',
-      'saadparwaiz1/cmp_luasnip',
+    --   'hrsh7th/cmp-nvim-lua',
+    --   'hrsh7th/cmp-buffer',
+    --   'hrsh7th/cmp-path',
+    --   'hrsh7th/cmp-cmdline',
+    --   -- snipets
+    --   'L3MON4D3/LuaSnip',
+    --   'saadparwaiz1/cmp_luasnip',
     }
 
     -- git
     use 'tpope/vim-fugitive'
 
-    -- copilot
-    use 'github/copilot.vim'
-
-    -- neoscroll for smooth scrolling
-    use 'karb94/neoscroll.nvim'
-
     -- where am I !
     use 'romgrk/nvim-treesitter-context'
-
-    --
-    use 'voldikss/vim-floaterm'
 
 end)
