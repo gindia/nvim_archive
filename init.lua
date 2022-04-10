@@ -116,5 +116,3 @@ cmd('autocmd FileType c map <leader>h <cmd>ClangdSwitchSourceHeader<CR>')
 
 require'telescope_config'
 require'treesitter_config'
-
-require'debugger_config'

@@ -30,10 +30,6 @@ return require'packer'.startup( function()
     -- lsp
     use 'neovim/nvim-lspconfig'
 
-    -- debugger
-    use { "rcarriga/nvim-dap-ui", requires = {"mfussenegger/nvim-dap"} }
-
-
     -- autocomplete
     -- use {
     --     'saecki/crates.nvim',
