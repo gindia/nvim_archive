@@ -21,6 +21,7 @@ vim.g.mapleader = " "
 map('', '<leader>w', '<C-w>', {noremap=true})
 
 map('', '<C-n>', '<cmd>Explore<CR>', { noremap = true, silent = true })
+map('', '<leader>bd', '<cmd>%bd|e#<CR>', { noremap = true, silent = true })
 
 vim.g.makeprg = 'build'
 
@@ -112,6 +113,7 @@ vim.g.gruvbox_italicize_comments= false
 vim.cmd([[colorscheme gruvbox]])
 
 require'lsp_config'
+cmd('autocmd FileType cpp map <leader>h <cmd>ClangdSwitchSourceHeader<CR>')
 cmd('autocmd FileType c map <leader>h <cmd>ClangdSwitchSourceHeader<CR>')
 
 require'telescope_config'
