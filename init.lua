@@ -12,10 +12,11 @@ vim.g.loaded_ruby_provider = 0
 vim.g.loaded_perl_provider = 0
 
 
-map('', '<F12>', '<C-w>w<cmd>wa<cr><cmd>term timeit build fast<CR><C-w>w', { noremap = true, silent = true })
-map('', '<F10>', '<C-w>w<cmd>wa<cr><cmd>term timeit build full<CR><C-w>w', { noremap = true, silent = true })
-map('', '<F9>',  '<C-w>w<cmd>term build run<CR> <C-w>w', { noremap = true, silent = true })
-map('', '<F2>', '<cmd>Cleanc<cr><C-o>', { noremap = true, silent = true })
+-- moved to .nvimrc as per project.
+-- map('', '<F12>', '<C-w>w<cmd>wa<cr><cmd>term timeit build build<CR><C-w>w', { noremap = true, silent = true })
+-- map('', '<F10>', '<C-w>w<cmd>wa<cr><cmd>term timeit build full<CR><C-w>w', { noremap = true, silent = true })
+-- map('', '<F9>',  '<C-w>w<cmd>term build run<CR> <C-w>w', { noremap = true, silent = true })
+-- map('', '<F2>', '<cmd>Cleanc<cr><C-o>', { noremap = true, silent = true })
 
 vim.g.mapleader = " "
 map('', '<leader>w', '<C-w>', {noremap=true})

@@ -8,7 +8,7 @@ local servers = {
   'clangd',
   'rust_analyzer',
   -- 'csharp_ls',
-  -- 'jdtls',
+  'jdtls',
   -- 'lemminx',
   -- 'cmake',
   -- 'jsonls',
@@ -35,7 +35,7 @@ local on_attach = function(_, bufnr)
   buf_set_keymap('n', 'gd', '<cmd>Telescope lsp_definitions<CR>', opts)
   buf_set_keymap('n', 'gi', '<cmd>Telescope lsp_implementations<CR>', opts)
   buf_set_keymap('n', 'gr', '<cmd>Telescope lsp_references<CR>', opts)
-  buf_set_keymap('n', '<space>qf', '<cmd>Telescope lsp_code_actions<CR>', opts)
+  buf_set_keymap('n', '<space>qf', '<cmd>lua vim.lsp.buf.code_action()<CR>', opts)
   buf_set_keymap('n', '<space>ee', '<cmd>Telescope diagnostics<CR>', opts)
   buf_set_keymap('n', '<space>r', '<cmd>lua vim.lsp.buf.rename()<CR>', opts)
 
@@ -98,14 +98,14 @@ lsp_config.sumneko_lua.setup {
 
 
 --disable diagnostics
-vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
-    vim.lsp.diagnostic.on_publish_diagnostics, {
-       virtual_text = false,
-       signs = false,
-       update_in_insert = false,
-       underline = false,
-    }
-)
+-- vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
+--     vim.lsp.diagnostic.on_publish_diagnostics, {
+--        virtual_text = false,
+--        signs = false,
+--        update_in_insert = false,
+--        underline = false,
+--     }
+-- )
 
 -- disable diagnostics
 -- vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
@@ -156,7 +156,7 @@ cmp.setup {
     -- { name = 'nvim_lua' },
     -- { name = 'luasnip'  },
     -- { name = 'buffer' },
-    -- { name = 'path' },
+    { name = 'path' },
     -- { name = 'crates' },
   },
 }
